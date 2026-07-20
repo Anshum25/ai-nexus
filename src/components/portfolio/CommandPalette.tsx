@@ -1,81 +1,177 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { Command, Search } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, ArrowRight, Terminal, BookOpen, LayoutDashboard, Activity, Network, ShieldCheck, Box, Zap } from "lucide-react";
 
-type Item = { label: string; hint: string; action: () => void };
+type Item = {
+  label: string;
+  hint: string;
+  action: () => void;
+  icon?: any;
+};
 
 export function CommandPalette() {
-  const [open, setOpen] = useState(false);
-  const [q, setQ] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const listRef = useRef<HTMLDivElement>(null);
+  
+  const keyBuffer = useRef<string[]>([]);
+  const bufferTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const items: Item[] = useMemo(() => {
     const go = (id: string) => () => {
-      setOpen(false);
+      setIsOpen(false);
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     };
     return [
-      { label: "Go to Projects", hint: "section", action: go("projects") },
-      { label: "Go to Journey", hint: "section", action: go("journey") },
-      { label: "Go to Stack", hint: "section", action: go("stack") },
-      { label: "Open AI Terminal", hint: "section", action: go("contact") },
-      { label: "Email me", hint: "action", action: () => { window.location.href = "mailto:hello@example.com"; } },
-      { label: "Open GitHub", hint: "external", action: () => window.open("https://github.com", "_blank") },
-      { label: "Open LinkedIn", hint: "external", action: () => window.open("https://linkedin.com", "_blank") },
+      { label: "Go to Mission Control", hint: "section", icon: Activity, action: go("top") },
+      { label: "Go to Project Universe", hint: "section", icon: Box, action: go("projects") },
+      { label: "Go to Architecture Lab", hint: "section", icon: Terminal, action: go("architecture-lab") },
+      { label: "Open Enterprise AI", hint: "project", icon: ShieldCheck, action: () => { /* Add logic to open modal */ setIsOpen(false); } },
+      { label: "Open Chess Mentor", hint: "project", icon: Zap, action: () => { /* Add logic to open modal */ setIsOpen(false); } },
+      { label: "Enable X-Ray Mode", hint: "system", icon: LayoutDashboard, action: () => { document.body.classList.toggle('xray-mode'); setIsOpen(false); } },
+      { label: "Download Resume", hint: "action", icon: BookOpen, action: () => window.open("/resume.pdf", "_blank") },
+      { label: "Contact", hint: "action", icon: Network, action: () => { window.location.href = "mailto:hello@example.com"; } },
     ];
   }, []);
 
-  const filtered = items.filter((i) => i.label.toLowerCase().includes(q.toLowerCase()));
+  const filtered = items.filter((i) => i.label.toLowerCase().includes(query.toLowerCase()));
+
+  // Global Keyboard Shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Toggle Command Palette
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+        return;
+      }
+
+      // Ignore if palette is open or user is typing in an input
+      if (isOpen || document.activeElement?.tagName === "INPUT" || document.activeElement?.tagName === "TEXTAREA") return;
+
+      // Single Key Action
+      if (e.key.toLowerCase() === "x") {
+        document.body.classList.toggle("xray-mode");
+      }
+      
+      // Sequence Shortcuts (G + ...)
+      keyBuffer.current.push(e.key.toLowerCase());
+      if (keyBuffer.current.length > 2) keyBuffer.current.shift();
+
+      const seq = keyBuffer.current.join("");
+      if (seq === "gp") {
+        window.scrollTo({ top: document.getElementById('project-universe')?.offsetTop || 2000, behavior: 'smooth' });
+        keyBuffer.current = [];
+      } else if (seq === "ga") {
+        window.scrollTo({ top: document.getElementById('architecture-lab')?.offsetTop || 4000, behavior: 'smooth' });
+        keyBuffer.current = [];
+      } else if (seq === "gm") {
+        window.scrollTo({ top: 1000, behavior: 'smooth' });
+        keyBuffer.current = [];
+      } else if (seq === "gc") {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        keyBuffer.current = [];
+      }
+
+      // Clear buffer after 1 second of inactivity
+      if (bufferTimeout.current) clearTimeout(bufferTimeout.current);
+      bufferTimeout.current = setTimeout(() => { keyBuffer.current = []; }, 1000);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      if (bufferTimeout.current) clearTimeout(bufferTimeout.current);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [query, isOpen]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault(); setOpen((v) => !v);
-      } else if (e.key === "Escape") setOpen(false);
+      if (isOpen) {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev < filtered.length - 1 ? prev + 1 : prev));
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : 0));
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          if (filtered[selectedIndex]) {
+            filtered[selectedIndex].action();
+          }
+        } else if (e.key === "Escape") {
+          setIsOpen(false);
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [isOpen, filtered, selectedIndex]);
+
+  useEffect(() => {
+    if (listRef.current && isOpen) {
+      const selectedEl = listRef.current.children[selectedIndex] as HTMLElement;
+      if (selectedEl) selectedEl.scrollIntoView({ block: "nearest" });
+    }
+  }, [selectedIndex, isOpen]);
 
   return (
     <AnimatePresence>
-      {open && (
+      {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[90] flex items-start justify-center bg-black/60 px-4 pt-[15vh] backdrop-blur-sm"
-          onClick={() => setOpen(false)}
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="fixed inset-0 z-[300] flex items-start justify-center bg-black/40 px-4 pt-[20vh] backdrop-blur-xl"
+          onClick={() => setIsOpen(false)}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: -8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -8 }}
-            transition={{ duration: 0.18 }}
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-lg overflow-hidden rounded-2xl glass glow-ring"
+            className="w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a]/90 shadow-2xl backdrop-blur-2xl"
           >
-            <div className="flex items-center gap-2 border-b border-white/10 px-4">
-              <Search className="h-4 w-4 text-muted-foreground" />
+            <div className="flex items-center gap-3 border-b border-white/10 px-4">
+              <Search className="h-5 w-5 text-[var(--electric)]" />
               <input
-                autoFocus value={q} onChange={(e) => setQ(e.target.value)}
-                placeholder="Search projects, sections, actions…"
-                className="flex-1 bg-transparent py-4 text-sm outline-none placeholder:text-muted-foreground"
+                autoFocus 
+                value={query} 
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search commands, navigate OS..."
+                className="flex-1 bg-transparent py-4 text-base outline-none placeholder:text-muted-foreground text-white"
               />
-              <span className="hidden items-center gap-1 rounded border border-white/10 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground md:inline-flex">
-                <Command className="h-3 w-3" /> K
-              </span>
             </div>
-            <div className="max-h-80 overflow-y-auto p-2">
+            
+            <div ref={listRef} className="max-h-[60vh] overflow-y-auto p-2 scrollbar-none">
               {filtered.length === 0 && (
-                <div className="px-3 py-6 text-center text-sm text-muted-foreground">No results</div>
+                <div className="px-3 py-12 text-center text-sm font-mono text-white/40">Command not found.</div>
               )}
-              {filtered.map((it) => (
+              {filtered.map((it, idx) => (
                 <button
                   key={it.label}
                   onClick={it.action}
-                  className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-foreground/90 transition hover:bg-white/5"
+                  onMouseEnter={() => setSelectedIndex(idx)}
+                  className={`group flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm transition-all duration-200 ${
+                    selectedIndex === idx 
+                      ? 'bg-[var(--electric)]/10 text-white shadow-[inset_0_0_20px_rgba(0,180,255,0.1)] border border-[var(--electric)]/20' 
+                      : 'text-white/70 hover:bg-white/5 border border-transparent'
+                  }`}
                 >
-                  <span>{it.label}</span>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{it.hint}</span>
+                  <div className="flex items-center gap-3">
+                    {it.icon && <it.icon className={`h-4 w-4 ${selectedIndex === idx ? 'text-[var(--electric)]' : 'text-zinc-500'}`} />}
+                    <span className={`transition-transform duration-300 ${selectedIndex === idx ? 'translate-x-1' : 'translate-x-0'}`}>{it.label}</span>
+                  </div>
+                  <span className={`font-mono text-[10px] uppercase tracking-widest ${selectedIndex === idx ? 'text-[var(--electric)]' : 'text-white/30'}`}>
+                    {it.hint}
+                  </span>
                 </button>
               ))}
             </div>

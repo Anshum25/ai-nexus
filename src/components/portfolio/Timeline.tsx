@@ -1,52 +1,105 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { MemoryReconstruction, type MemoryNode } from "./MemoryReconstruction";
 
-const NODES = [
-  { title: "Foundations", body: "Python, algorithms, data structures.", year: "2019" },
-  { title: "Web Engineering", body: "React, TypeScript, Node & FastAPI.", year: "2021" },
-  { title: "ERPNext / Frappe", body: "Custom apps, workflows, DocTypes.", year: "2022" },
-  { title: "AI Systems", body: "LLMs, embeddings, agents, tool use.", year: "2023" },
-  { title: "RAG & Vector DBs", body: "Qdrant, hybrid search, evals.", year: "2024" },
-  { title: "Enterprise AI", body: "Production RAG for manufacturing.", year: "2025" },
-  { title: "Today", body: "Shipping AI that survives real users.", year: "Now" },
+const MEMORIES: MemoryNode[] = [
+  { id: "m1", type: "Education", title: "The Beginning", subtitle: "Curiosity over credentials.", year: "2019" },
+  { id: "m2", type: "Company", title: "First Production", subtitle: "Building real systems for real users.", year: "2021" },
+  { id: "m3", type: "ERP Journey", title: "The ERP Ecosystem", subtitle: "Mastering Frappe & enterprise workflows.", year: "2022" },
+  { id: "m4", type: "Enterprise AI", title: "TRMS Architecture", subtitle: "RAG routing over ERP data.", year: "2024" },
+  { id: "m5", type: "Chess Mentor", title: "Real-time AI Coach", subtitle: "Sockets, Stockfish, and sub-200ms insights.", year: "2025" },
+  { id: "m6", type: "Future Vision", title: "Multi-Agent Systems", subtitle: "The next era of intelligent tooling.", year: "Future" },
 ];
 
 export function Timeline() {
-  return (
-    <section id="journey" className="relative mx-auto max-w-6xl px-6 py-32">
-      <SectionHeading eyebrow="Journey" title="From first script to production AI." />
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeMemory, setActiveMemory] = useState<MemoryNode | null>(null);
 
-      <div className="relative mt-16">
-        <div className="absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-transparent via-white/20 to-transparent md:block" />
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-7">
-          {NODES.map((n, i) => (
-            <motion.div
-              key={n.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="group relative"
-            >
-              <div className="mx-auto hidden h-3 w-3 rounded-full bg-[var(--electric)] shadow-[0_0_20px_var(--electric)] md:block" />
-              <div className="mt-4 glass p-4 transition-all duration-500 group-hover:-translate-y-1 group-hover:glow-ring">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--cyan)]">{n.year}</div>
-                <div className="mt-1 text-sm font-semibold">{n.title}</div>
-                <div className="mt-1 text-xs text-muted-foreground">{n.body}</div>
-              </div>
-            </motion.div>
-          ))}
+  // Lock body scroll when a memory is open
+  useEffect(() => {
+    if (activeMemory) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "unset";
+    return () => { document.body.style.overflow = "unset"; };
+  }, [activeMemory]);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  return (
+    <section ref={containerRef} id="journey" className="relative h-[400vh] bg-background">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+        
+        <div className="absolute top-24 left-6 md:left-12 z-20">
+          <SectionHeading eyebrow="Memory Vault" title="Engineering Identity" subtitle="Reconstruct the experiences that defined the architecture." />
+        </div>
+
+        {/* The Z-Axis Dive */}
+        <div className="relative w-full max-w-7xl mx-auto h-full flex items-center justify-center perspective-[1000px]">
+          {MEMORIES.map((node, i) => {
+            const start = i * 0.12;
+            const end = start + 0.3;
+            
+            const z = useTransform(scrollYProgress, [start, end], [-1000, 200]);
+            const opacity = useTransform(scrollYProgress, [start, start + 0.15, end - 0.05, end], [0, 1, 1, 0]);
+            
+            const xOffset = i % 2 === 0 ? -200 : 200;
+            const yOffset = (i % 3) * 50 - 50;
+
+            return (
+              <motion.div
+                key={node.id}
+                className="absolute z-10"
+                style={{ z, opacity, x: xOffset, y: yOffset }}
+              >
+                <motion.button
+                  layoutId={`memory-${node.id}`}
+                  onClick={() => setActiveMemory(node)}
+                  className="group relative glass p-6 w-[280px] md:w-[320px] rounded-2xl shadow-[0_0_40px_rgba(0,180,255,0.05)] transition-all duration-300 hover:shadow-[0_0_80px_rgba(0,180,255,0.2)] text-left"
+                  data-cursor="explore"
+                >
+                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 h-6 w-[2px] bg-[var(--electric)] shadow-[0_0_10px_var(--electric)]" />
+                  
+                  {/* Glowing core inside capsule */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl blur-md" />
+
+                  <div className="relative z-10">
+                    <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--cyan)]">{node.year}</div>
+                    <div className="mt-2 text-lg font-semibold text-white group-hover:text-[var(--cyan)] transition-colors">{node.title}</div>
+                    <div className="mt-2 text-sm text-white/50">{node.type}</div>
+                  </div>
+                </motion.button>
+              </motion.div>
+            );
+          })}
+        </div>
+        
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-64 h-1 bg-white/5 rounded-full overflow-hidden">
+          <motion.div 
+            className="h-full bg-gradient-to-r from-[var(--cyan)] to-[var(--electric)]" 
+            style={{ scaleX: scrollYProgress, transformOrigin: "left" }} 
+          />
         </div>
       </div>
+
+      {/* Render the full-screen reconstruction overlay */}
+      <MemoryReconstruction 
+        memory={activeMemory} 
+        onClose={() => setActiveMemory(null)} 
+      />
     </section>
   );
 }
 
 export function SectionHeading({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
   return (
-    <div>
-      <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-[var(--cyan)]">{eyebrow}</div>
-      <h2 className="text-balance mt-4 text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">{title}</h2>
-      {subtitle && <p className="mt-4 max-w-2xl text-muted-foreground">{subtitle}</p>}
+    <div className="relative z-10 pointer-events-none">
+      <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--cyan)]">
+        {eyebrow}
+      </div>
+      <h2 className="text-balance mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">{title}</h2>
+      {subtitle && <p className="mt-4 max-w-md text-white/50 font-light text-sm">{subtitle}</p>}
     </div>
   );
 }
