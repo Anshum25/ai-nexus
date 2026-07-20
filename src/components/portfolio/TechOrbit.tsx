@@ -43,22 +43,22 @@ export function TechOrbit() {
             const angle = (idxInRing / items) * Math.PI * 2;
             const radius = (0.42 + (ring + 1) * 0.18) * 280;
             return (
-              <motion.div
+              <div
                 key={t}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.04 }}
                 className="absolute left-1/2 top-1/2"
                 style={{ transform: `translate(calc(-50% + ${Math.cos(angle) * radius}px), calc(-50% + ${Math.sin(angle) * radius}px))` }}
               >
                 <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.04 }}
                   whileHover={{ scale: 1.15, y: -2 }}
                   className="cursor-default rounded-full glass px-3 py-1.5 text-xs font-mono text-foreground/85 hover:text-foreground hover:glow-ring"
                 >
                   {t}
                 </motion.div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
