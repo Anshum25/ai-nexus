@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ArrowRight, Terminal, BookOpen, LayoutDashboard, Activity, Network, ShieldCheck, Box, Zap } from "lucide-react";
+import { Search, ArrowRight, Terminal, BookOpen, LayoutDashboard, Activity, Network, ShieldCheck, Box, Zap, Briefcase, BrainCircuit, PenTool, User, Map, Award, Wrench, ShieldQuestion } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 
 type Item = {
   label: string;
@@ -14,27 +15,42 @@ export function CommandPalette() {
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const listRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   
   const keyBuffer = useRef<string[]>([]);
   const bufferTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const items: Item[] = useMemo(() => {
-    const go = (id: string) => () => {
+    const go = (path: string) => () => {
       setIsOpen(false);
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      navigate({ to: path });
     };
     return [
-      { label: "Go to Mission Control", hint: "section", icon: Activity, action: go("top") },
-      { label: "Go to Project Universe", hint: "section", icon: Box, action: go("projects") },
-      { label: "Go to Architecture Lab", hint: "section", icon: Terminal, action: go("architecture-lab") },
-      { label: "Open Enterprise AI", hint: "project", icon: ShieldCheck, action: () => { /* Add logic to open modal */ setIsOpen(false); } },
-      { label: "Open Chess Mentor", hint: "project", icon: Zap, action: () => { /* Add logic to open modal */ setIsOpen(false); } },
-      { label: "Enable X-Ray Mode", hint: "system", icon: LayoutDashboard, action: () => { document.body.classList.toggle('xray-mode'); setIsOpen(false); } },
+      { label: "Go to Home", hint: "page", icon: LayoutDashboard, action: go("/") },
+      { label: "Go to Now Dashboard", hint: "page", icon: Activity, action: go("/now") },
+      { label: "Go to Work", hint: "page", icon: Briefcase, action: go("/work") },
+      { label: "Go to Engineering Hub", hint: "page", icon: BrainCircuit, action: go("/engineering") },
+      { label: "Go to Technology Atlas", hint: "page", icon: Network, action: go("/atlas") },
+      { label: "Go to Architecture Gallery", hint: "page", icon: Box, action: go("/architecture") },
+      { label: "Go to Engineering Workflow", hint: "page", icon: Activity, action: go("/workflow") },
+      { label: "Go to Playground", hint: "page", icon: Terminal, action: go("/playground") },
+      { label: "Go to Experiment Lab", hint: "page", icon: Zap, action: go("/lab") },
+      { label: "Go to Engineering Notebook", hint: "page", icon: PenTool, action: go("/notebook") },
+      { label: "Go to Case Studies", hint: "page", icon: ShieldCheck, action: go("/case-studies") },
+      { label: "Go to Writing", hint: "page", icon: PenTool, action: go("/writing") },
+      { label: "Go to About", hint: "page", icon: User, action: go("/about") },
+      { label: "Go to Execution Timeline", hint: "page", icon: Activity, action: go("/timeline") },
+      { label: "Go to Learning Roadmap", hint: "page", icon: Map, action: go("/roadmap") },
+      { label: "Go to Achievements", hint: "page", icon: Award, action: go("/achievements") },
+      { label: "Go to Bookshelf", hint: "page", icon: BookOpen, action: go("/bookshelf") },
+      { label: "Go to Tools I Use", hint: "page", icon: Wrench, action: go("/uses") },
+      { label: "Go to FAQ", hint: "page", icon: ShieldQuestion, action: go("/faq") },
+      { label: "Go to Resources", hint: "page", icon: BookOpen, action: go("/resources") },
       { label: "Download Resume", hint: "action", icon: BookOpen, action: () => window.open("/resume.pdf", "_blank") },
-      { label: "Contact", hint: "action", icon: Network, action: () => { window.location.href = "mailto:hello@example.com"; } },
+      { label: "Contact", hint: "page", icon: Network, action: go("/contact") },
+      { label: "Enable X-Ray Mode", hint: "system", icon: Box, action: () => { document.body.classList.toggle('xray-mode'); setIsOpen(false); } },
     ];
-  }, []);
+  }, [navigate]);
 
   const filtered = items.filter((i) => i.label.toLowerCase().includes(query.toLowerCase()));
 

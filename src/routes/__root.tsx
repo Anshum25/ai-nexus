@@ -7,15 +7,21 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { BootLoader } from "@/components/portfolio/BootLoader";
+import { CursorEngine } from "@/components/portfolio/CursorEngine";
+import { Nav } from "@/components/portfolio/Nav";
+import { CommandPalette } from "@/components/portfolio/CommandPalette";
+import { NexusAIGuide } from "@/components/portfolio/NexusAIGuide";
+import { EnvironmentEngine } from "@/components/portfolio/EnvironmentEngine";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+      <div className="max-w-md text-center z-50 relative">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -43,7 +49,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+      <div className="max-w-md text-center z-50 relative">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
           This page didn't load
         </h1>
@@ -114,11 +120,49 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [booted, setBooted] = useState(false);
+  
+  useEffect(() => {
+    // ensure dark theme
+    document.documentElement.classList.add("dark");
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div id="top" className="relative min-h-screen bg-background text-foreground grain overflow-clip selection:bg-[var(--electric)] selection:text-white">
+        {/* LAYER 2: Invisible Intelligence (Background Engine) */}
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <div className="aurora opacity-70" />
+          <div className="grid-bg opacity-40" />
+        </div>
+
+        {/* Boot Sequence Overlay */}
+        {!booted && <BootLoader onDone={() => setBooted(true)} />}
+
+        {/* Global Ambient Layer */}
+        <EnvironmentEngine />
+
+        {/* Global Interface Elements */}
+        <CursorEngine />
+        <CommandPalette />
+        <NexusAIGuide />
+        
+        {/* Only show Nav after boot */}
+        {booted && <Nav />}
+
+        <main className={`relative z-10 transition-opacity duration-1000 lg:pl-72 ${booted ? "opacity-100" : "opacity-0"}`}>
+          <Outlet />
+          {booted && (
+            <footer className="border-t border-white/5 py-12 text-center font-mono text-xs text-muted-foreground flex flex-col items-center justify-center gap-4 mt-20">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-[var(--electric)] animate-pulse" />
+                NEXUS OS v2.0 Online
+              </div>
+              <div>© {new Date().getFullYear()} · engineered from scratch · press ⌘K</div>
+            </footer>
+          )}
+        </main>
+      </div>
     </QueryClientProvider>
   );
 }
