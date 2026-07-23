@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState, useRef, useEffect } from 'react';
-import { Terminal, Shield, Key, MessageSquare, Clock, Globe } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+import { Terminal, Shield, Lock, Activity, Send, Key, MessageSquare, Clock, Globe } from 'lucide-react';
 
-export const Route = createFileRoute('/contact')({
-  component: ContactComponent,
+export const Route = createFileRoute('/mission-control')({
+  component: MissionControlComponent,
 })
 
-function ContactComponent() {
+function MissionControlComponent() {
   const [history, setHistory] = useState([
     { type: 'system', text: 'NEXUS Secure Communications Protocol Initialized.' },
     { type: 'system', text: 'Enter your message below to establish connection.' }

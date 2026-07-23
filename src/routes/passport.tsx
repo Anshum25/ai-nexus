@@ -1,11 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Download, Printer, Mail, MapPin, Globe, Linkedin, Github } from "lucide-react";
+import { motion } from 'framer-motion';
+import { FileText, Download, Briefcase, GraduationCap, Code2, Layers, Cpu, Award, Mail, MapPin, Globe, Github, Printer } from 'lucide-react';
 
-export const Route = createFileRoute('/resume')({
-  component: ResumeComponent,
-})
+export const Route = createFileRoute('/passport')({
+  component: PassportComponent,
+});
 
-function ResumeComponent() {
+function PassportComponent() {
   const handlePrint = () => {
     window.print();
   };

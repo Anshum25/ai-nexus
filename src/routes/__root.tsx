@@ -1,4 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AnimatePresence } from "framer-motion";
+import { WelcomeModal } from "@/components/portfolio/WelcomeModal";
 import {
   Outlet,
   Link,
@@ -121,11 +123,17 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const [booted, setBooted] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
   
   useEffect(() => {
     // ensure dark theme
     document.documentElement.classList.add("dark");
   }, []);
+
+  const handleBootDone = () => {
+    setBooted(true);
+    setShowWelcome(true);
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -137,7 +145,12 @@ function RootComponent() {
         </div>
 
         {/* Boot Sequence Overlay */}
-        {!booted && <BootLoader onDone={() => setBooted(true)} />}
+        {!booted && <BootLoader onDone={handleBootDone} />}
+
+        {/* Welcome Modal Overlay */}
+        <AnimatePresence>
+          {showWelcome && <WelcomeModal onDismiss={() => setShowWelcome(false)} />}
+        </AnimatePresence>
 
         {/* Global Ambient Layer */}
         <EnvironmentEngine />

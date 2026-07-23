@@ -10,36 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as AchievementsRouteImport } from './routes/achievements'
-import { Route as ArchitectureRouteImport } from './routes/architecture'
+import { Route as ArchitectureAtlasRouteImport } from './routes/architecture-atlas'
+import { Route as ArchiveRouteImport } from './routes/archive'
 import { Route as AtlasRouteImport } from './routes/atlas'
+import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as BookshelfRouteImport } from './routes/bookshelf'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
-import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DecisionRoomRouteImport } from './routes/decision-room'
 import { Route as EngineeringRouteImport } from './routes/engineering'
+import { Route as FailureMuseumRouteImport } from './routes/failure-museum'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as InnovationLabRouteImport } from './routes/innovation-lab'
+import { Route as JournalRouteImport } from './routes/journal'
 import { Route as LabRouteImport } from './routes/lab'
+import { Route as MissionControlRouteImport } from './routes/mission-control'
+import { Route as MissionHistoryRouteImport } from './routes/mission-history'
 import { Route as NotebookRouteImport } from './routes/notebook'
 import { Route as NowRouteImport } from './routes/now'
-import { Route as PlaygroundRouteImport } from './routes/playground'
+import { Route as PassportRouteImport } from './routes/passport'
+import { Route as PromptLabRouteImport } from './routes/prompt-lab'
+import { Route as ResearchVaultRouteImport } from './routes/research-vault'
 import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
-import { Route as TimelineRouteImport } from './routes/timeline'
 import { Route as UsesRouteImport } from './routes/uses'
-import { Route as WorkRouteImport } from './routes/work'
 import { Route as WorkflowRouteImport } from './routes/workflow'
-import { Route as WritingRouteImport } from './routes/writing'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AchievementsRoute = AchievementsRouteImport.update({
@@ -47,14 +46,24 @@ const AchievementsRoute = AchievementsRouteImport.update({
   path: '/achievements',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArchitectureRoute = ArchitectureRouteImport.update({
-  id: '/architecture',
-  path: '/architecture',
+const ArchitectureAtlasRoute = ArchitectureAtlasRouteImport.update({
+  id: '/architecture-atlas',
+  path: '/architecture-atlas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchiveRoute = ArchiveRouteImport.update({
+  id: '/archive',
+  path: '/archive',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtlasRoute = AtlasRouteImport.update({
   id: '/atlas',
   path: '/atlas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlueprintRoute = BlueprintRouteImport.update({
+  id: '/blueprint',
+  path: '/blueprint',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookshelfRoute = BookshelfRouteImport.update({
@@ -67,9 +76,9 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
   path: '/case-studies',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const DecisionRoomRoute = DecisionRoomRouteImport.update({
+  id: '/decision-room',
+  path: '/decision-room',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EngineeringRoute = EngineeringRouteImport.update({
@@ -77,14 +86,39 @@ const EngineeringRoute = EngineeringRouteImport.update({
   path: '/engineering',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FailureMuseumRoute = FailureMuseumRouteImport.update({
+  id: '/failure-museum',
+  path: '/failure-museum',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InnovationLabRoute = InnovationLabRouteImport.update({
+  id: '/innovation-lab',
+  path: '/innovation-lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LabRoute = LabRouteImport.update({
   id: '/lab',
   path: '/lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MissionControlRoute = MissionControlRouteImport.update({
+  id: '/mission-control',
+  path: '/mission-control',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MissionHistoryRoute = MissionHistoryRouteImport.update({
+  id: '/mission-history',
+  path: '/mission-history',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NotebookRoute = NotebookRouteImport.update({
@@ -97,9 +131,19 @@ const NowRoute = NowRouteImport.update({
   path: '/now',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PlaygroundRoute = PlaygroundRouteImport.update({
-  id: '/playground',
-  path: '/playground',
+const PassportRoute = PassportRouteImport.update({
+  id: '/passport',
+  path: '/passport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromptLabRoute = PromptLabRouteImport.update({
+  id: '/prompt-lab',
+  path: '/prompt-lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchVaultRoute = ResearchVaultRouteImport.update({
+  id: '/research-vault',
+  path: '/research-vault',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -107,19 +151,9 @@ const ResourcesRoute = ResourcesRouteImport.update({
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResumeRoute = ResumeRouteImport.update({
-  id: '/resume',
-  path: '/resume',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RoadmapRoute = RoadmapRouteImport.update({
   id: '/roadmap',
   path: '/roadmap',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TimelineRoute = TimelineRouteImport.update({
-  id: '/timeline',
-  path: '/timeline',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UsesRoute = UsesRouteImport.update({
@@ -127,193 +161,211 @@ const UsesRoute = UsesRouteImport.update({
   path: '/uses',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkRoute = WorkRouteImport.update({
-  id: '/work',
-  path: '/work',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const WorkflowRoute = WorkflowRouteImport.update({
   id: '/workflow',
   path: '/workflow',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WritingRoute = WritingRouteImport.update({
-  id: '/writing',
-  path: '/writing',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/architecture': typeof ArchitectureRoute
+  '/architecture-atlas': typeof ArchitectureAtlasRoute
+  '/archive': typeof ArchiveRoute
   '/atlas': typeof AtlasRoute
+  '/blueprint': typeof BlueprintRoute
   '/bookshelf': typeof BookshelfRoute
   '/case-studies': typeof CaseStudiesRoute
-  '/contact': typeof ContactRoute
+  '/decision-room': typeof DecisionRoomRoute
   '/engineering': typeof EngineeringRoute
+  '/failure-museum': typeof FailureMuseumRoute
   '/faq': typeof FaqRoute
+  '/innovation-lab': typeof InnovationLabRoute
+  '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
+  '/mission-control': typeof MissionControlRoute
+  '/mission-history': typeof MissionHistoryRoute
   '/notebook': typeof NotebookRoute
   '/now': typeof NowRoute
-  '/playground': typeof PlaygroundRoute
+  '/passport': typeof PassportRoute
+  '/prompt-lab': typeof PromptLabRoute
+  '/research-vault': typeof ResearchVaultRoute
   '/resources': typeof ResourcesRoute
-  '/resume': typeof ResumeRoute
   '/roadmap': typeof RoadmapRoute
-  '/timeline': typeof TimelineRoute
   '/uses': typeof UsesRoute
-  '/work': typeof WorkRoute
   '/workflow': typeof WorkflowRoute
-  '/writing': typeof WritingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/architecture': typeof ArchitectureRoute
+  '/architecture-atlas': typeof ArchitectureAtlasRoute
+  '/archive': typeof ArchiveRoute
   '/atlas': typeof AtlasRoute
+  '/blueprint': typeof BlueprintRoute
   '/bookshelf': typeof BookshelfRoute
   '/case-studies': typeof CaseStudiesRoute
-  '/contact': typeof ContactRoute
+  '/decision-room': typeof DecisionRoomRoute
   '/engineering': typeof EngineeringRoute
+  '/failure-museum': typeof FailureMuseumRoute
   '/faq': typeof FaqRoute
+  '/innovation-lab': typeof InnovationLabRoute
+  '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
+  '/mission-control': typeof MissionControlRoute
+  '/mission-history': typeof MissionHistoryRoute
   '/notebook': typeof NotebookRoute
   '/now': typeof NowRoute
-  '/playground': typeof PlaygroundRoute
+  '/passport': typeof PassportRoute
+  '/prompt-lab': typeof PromptLabRoute
+  '/research-vault': typeof ResearchVaultRoute
   '/resources': typeof ResourcesRoute
-  '/resume': typeof ResumeRoute
   '/roadmap': typeof RoadmapRoute
-  '/timeline': typeof TimelineRoute
   '/uses': typeof UsesRoute
-  '/work': typeof WorkRoute
   '/workflow': typeof WorkflowRoute
-  '/writing': typeof WritingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/architecture': typeof ArchitectureRoute
+  '/architecture-atlas': typeof ArchitectureAtlasRoute
+  '/archive': typeof ArchiveRoute
   '/atlas': typeof AtlasRoute
+  '/blueprint': typeof BlueprintRoute
   '/bookshelf': typeof BookshelfRoute
   '/case-studies': typeof CaseStudiesRoute
-  '/contact': typeof ContactRoute
+  '/decision-room': typeof DecisionRoomRoute
   '/engineering': typeof EngineeringRoute
+  '/failure-museum': typeof FailureMuseumRoute
   '/faq': typeof FaqRoute
+  '/innovation-lab': typeof InnovationLabRoute
+  '/journal': typeof JournalRoute
   '/lab': typeof LabRoute
+  '/mission-control': typeof MissionControlRoute
+  '/mission-history': typeof MissionHistoryRoute
   '/notebook': typeof NotebookRoute
   '/now': typeof NowRoute
-  '/playground': typeof PlaygroundRoute
+  '/passport': typeof PassportRoute
+  '/prompt-lab': typeof PromptLabRoute
+  '/research-vault': typeof ResearchVaultRoute
   '/resources': typeof ResourcesRoute
-  '/resume': typeof ResumeRoute
   '/roadmap': typeof RoadmapRoute
-  '/timeline': typeof TimelineRoute
   '/uses': typeof UsesRoute
-  '/work': typeof WorkRoute
   '/workflow': typeof WorkflowRoute
-  '/writing': typeof WritingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/achievements'
-    | '/architecture'
+    | '/architecture-atlas'
+    | '/archive'
     | '/atlas'
+    | '/blueprint'
     | '/bookshelf'
     | '/case-studies'
-    | '/contact'
+    | '/decision-room'
     | '/engineering'
+    | '/failure-museum'
     | '/faq'
+    | '/innovation-lab'
+    | '/journal'
     | '/lab'
+    | '/mission-control'
+    | '/mission-history'
     | '/notebook'
     | '/now'
-    | '/playground'
+    | '/passport'
+    | '/prompt-lab'
+    | '/research-vault'
     | '/resources'
-    | '/resume'
     | '/roadmap'
-    | '/timeline'
     | '/uses'
-    | '/work'
     | '/workflow'
-    | '/writing'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/achievements'
-    | '/architecture'
+    | '/architecture-atlas'
+    | '/archive'
     | '/atlas'
+    | '/blueprint'
     | '/bookshelf'
     | '/case-studies'
-    | '/contact'
+    | '/decision-room'
     | '/engineering'
+    | '/failure-museum'
     | '/faq'
+    | '/innovation-lab'
+    | '/journal'
     | '/lab'
+    | '/mission-control'
+    | '/mission-history'
     | '/notebook'
     | '/now'
-    | '/playground'
+    | '/passport'
+    | '/prompt-lab'
+    | '/research-vault'
     | '/resources'
-    | '/resume'
     | '/roadmap'
-    | '/timeline'
     | '/uses'
-    | '/work'
     | '/workflow'
-    | '/writing'
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/achievements'
-    | '/architecture'
+    | '/architecture-atlas'
+    | '/archive'
     | '/atlas'
+    | '/blueprint'
     | '/bookshelf'
     | '/case-studies'
-    | '/contact'
+    | '/decision-room'
     | '/engineering'
+    | '/failure-museum'
     | '/faq'
+    | '/innovation-lab'
+    | '/journal'
     | '/lab'
+    | '/mission-control'
+    | '/mission-history'
     | '/notebook'
     | '/now'
-    | '/playground'
+    | '/passport'
+    | '/prompt-lab'
+    | '/research-vault'
     | '/resources'
-    | '/resume'
     | '/roadmap'
-    | '/timeline'
     | '/uses'
-    | '/work'
     | '/workflow'
-    | '/writing'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
-  ArchitectureRoute: typeof ArchitectureRoute
+  ArchitectureAtlasRoute: typeof ArchitectureAtlasRoute
+  ArchiveRoute: typeof ArchiveRoute
   AtlasRoute: typeof AtlasRoute
+  BlueprintRoute: typeof BlueprintRoute
   BookshelfRoute: typeof BookshelfRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
-  ContactRoute: typeof ContactRoute
+  DecisionRoomRoute: typeof DecisionRoomRoute
   EngineeringRoute: typeof EngineeringRoute
+  FailureMuseumRoute: typeof FailureMuseumRoute
   FaqRoute: typeof FaqRoute
+  InnovationLabRoute: typeof InnovationLabRoute
+  JournalRoute: typeof JournalRoute
   LabRoute: typeof LabRoute
+  MissionControlRoute: typeof MissionControlRoute
+  MissionHistoryRoute: typeof MissionHistoryRoute
   NotebookRoute: typeof NotebookRoute
   NowRoute: typeof NowRoute
-  PlaygroundRoute: typeof PlaygroundRoute
+  PassportRoute: typeof PassportRoute
+  PromptLabRoute: typeof PromptLabRoute
+  ResearchVaultRoute: typeof ResearchVaultRoute
   ResourcesRoute: typeof ResourcesRoute
-  ResumeRoute: typeof ResumeRoute
   RoadmapRoute: typeof RoadmapRoute
-  TimelineRoute: typeof TimelineRoute
   UsesRoute: typeof UsesRoute
-  WorkRoute: typeof WorkRoute
   WorkflowRoute: typeof WorkflowRoute
-  WritingRoute: typeof WritingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -325,13 +377,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/achievements': {
       id: '/achievements'
       path: '/achievements'
@@ -339,11 +384,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AchievementsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/architecture': {
-      id: '/architecture'
-      path: '/architecture'
-      fullPath: '/architecture'
-      preLoaderRoute: typeof ArchitectureRouteImport
+    '/architecture-atlas': {
+      id: '/architecture-atlas'
+      path: '/architecture-atlas'
+      fullPath: '/architecture-atlas'
+      preLoaderRoute: typeof ArchitectureAtlasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archive': {
+      id: '/archive'
+      path: '/archive'
+      fullPath: '/archive'
+      preLoaderRoute: typeof ArchiveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atlas': {
@@ -351,6 +403,13 @@ declare module '@tanstack/react-router' {
       path: '/atlas'
       fullPath: '/atlas'
       preLoaderRoute: typeof AtlasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blueprint': {
+      id: '/blueprint'
+      path: '/blueprint'
+      fullPath: '/blueprint'
+      preLoaderRoute: typeof BlueprintRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bookshelf': {
@@ -367,11 +426,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/decision-room': {
+      id: '/decision-room'
+      path: '/decision-room'
+      fullPath: '/decision-room'
+      preLoaderRoute: typeof DecisionRoomRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/engineering': {
@@ -381,6 +440,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EngineeringRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/failure-museum': {
+      id: '/failure-museum'
+      path: '/failure-museum'
+      fullPath: '/failure-museum'
+      preLoaderRoute: typeof FailureMuseumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
@@ -388,11 +454,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/innovation-lab': {
+      id: '/innovation-lab'
+      path: '/innovation-lab'
+      fullPath: '/innovation-lab'
+      preLoaderRoute: typeof InnovationLabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lab': {
       id: '/lab'
       path: '/lab'
       fullPath: '/lab'
       preLoaderRoute: typeof LabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mission-control': {
+      id: '/mission-control'
+      path: '/mission-control'
+      fullPath: '/mission-control'
+      preLoaderRoute: typeof MissionControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mission-history': {
+      id: '/mission-history'
+      path: '/mission-history'
+      fullPath: '/mission-history'
+      preLoaderRoute: typeof MissionHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/notebook': {
@@ -409,11 +503,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NowRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/playground': {
-      id: '/playground'
-      path: '/playground'
-      fullPath: '/playground'
-      preLoaderRoute: typeof PlaygroundRouteImport
+    '/passport': {
+      id: '/passport'
+      path: '/passport'
+      fullPath: '/passport'
+      preLoaderRoute: typeof PassportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prompt-lab': {
+      id: '/prompt-lab'
+      path: '/prompt-lab'
+      fullPath: '/prompt-lab'
+      preLoaderRoute: typeof PromptLabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research-vault': {
+      id: '/research-vault'
+      path: '/research-vault'
+      fullPath: '/research-vault'
+      preLoaderRoute: typeof ResearchVaultRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources': {
@@ -423,25 +531,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resume': {
-      id: '/resume'
-      path: '/resume'
-      fullPath: '/resume'
-      preLoaderRoute: typeof ResumeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/roadmap': {
       id: '/roadmap'
       path: '/roadmap'
       fullPath: '/roadmap'
       preLoaderRoute: typeof RoadmapRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/timeline': {
-      id: '/timeline'
-      path: '/timeline'
-      fullPath: '/timeline'
-      preLoaderRoute: typeof TimelineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uses': {
@@ -451,13 +545,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work': {
-      id: '/work'
-      path: '/work'
-      fullPath: '/work'
-      preLoaderRoute: typeof WorkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/workflow': {
       id: '/workflow'
       path: '/workflow'
@@ -465,39 +552,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkflowRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/writing': {
-      id: '/writing'
-      path: '/writing'
-      fullPath: '/writing'
-      preLoaderRoute: typeof WritingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
-  ArchitectureRoute: ArchitectureRoute,
+  ArchitectureAtlasRoute: ArchitectureAtlasRoute,
+  ArchiveRoute: ArchiveRoute,
   AtlasRoute: AtlasRoute,
+  BlueprintRoute: BlueprintRoute,
   BookshelfRoute: BookshelfRoute,
   CaseStudiesRoute: CaseStudiesRoute,
-  ContactRoute: ContactRoute,
+  DecisionRoomRoute: DecisionRoomRoute,
   EngineeringRoute: EngineeringRoute,
+  FailureMuseumRoute: FailureMuseumRoute,
   FaqRoute: FaqRoute,
+  InnovationLabRoute: InnovationLabRoute,
+  JournalRoute: JournalRoute,
   LabRoute: LabRoute,
+  MissionControlRoute: MissionControlRoute,
+  MissionHistoryRoute: MissionHistoryRoute,
   NotebookRoute: NotebookRoute,
   NowRoute: NowRoute,
-  PlaygroundRoute: PlaygroundRoute,
+  PassportRoute: PassportRoute,
+  PromptLabRoute: PromptLabRoute,
+  ResearchVaultRoute: ResearchVaultRoute,
   ResourcesRoute: ResourcesRoute,
-  ResumeRoute: ResumeRoute,
   RoadmapRoute: RoadmapRoute,
-  TimelineRoute: TimelineRoute,
   UsesRoute: UsesRoute,
-  WorkRoute: WorkRoute,
   WorkflowRoute: WorkflowRoute,
-  WritingRoute: WritingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

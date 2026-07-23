@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, X, ChevronRight, Activity, Server, Cpu, Database, Layout, ShieldCheck, Box, Zap, Settings, BookOpen, Layers } from 'lucide-react';
 
-export const Route = createFileRoute('/work')({
+export const Route = createFileRoute('/archive')({
   component: WorkComponent,
 })
 

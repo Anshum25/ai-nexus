@@ -1,23 +1,57 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ArrowRight, Terminal, BookOpen, LayoutDashboard, Activity, Network, ShieldCheck, Box, Zap, Briefcase, BrainCircuit, PenTool, User, Map, Award, Wrench, ShieldQuestion } from "lucide-react";
+import { Search, Terminal, FileText, Activity, Database, Network, BookOpen, ShieldAlert, Zap, Map, MapPin, User, Briefcase, Award, PenTool, Wrench, ShieldQuestion, LayoutDashboard, Box, ArrowRight } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
+
+// The massive map of all OS applications for the search palette
+const ACTIONS = [
+  { id: 'h', title: 'Home', icon: LayoutDashboard, route: '/' },
+  { id: 'b', title: 'Engineer Blueprint', icon: FileText, route: '/blueprint' },
+  { id: 'nw', title: 'Current Mission (Now)', icon: Activity, route: '/now' },
+  { id: 'mh', title: 'Mission History', icon: Map, route: '/mission-history' },
+  { id: 'mc', title: 'Mission Control', icon: MapPin, route: '/mission-control' },
+  { id: 'ar', title: 'Engineering Archive', icon: Database, route: '/archive' },
+  { id: 'aa', title: 'Architecture Atlas', icon: Network, route: '/architecture-atlas' },
+  { id: 'fm', title: 'Failure Museum', icon: ShieldAlert, route: '/failure-museum' },
+  { id: 'dr', title: 'Decision Room', icon: BookOpen, route: '/decision-room' },
+  { id: 'sd', title: 'System Design Gallery', icon: Network, route: '/system-design' },
+  { id: 'rv', title: 'Research Vault', icon: ShieldAlert, route: '/research-vault' },
+  { id: 'il', title: 'Innovation Lab', icon: Zap, route: '/innovation-lab' },
+  { id: 'xc', title: 'Experiment Canvas', icon: Activity, route: '/lab' },
+  { id: 'pl', title: 'Prompt Laboratory', icon: Terminal, route: '/prompt-lab' },
+  { id: 'in', title: 'Idea Incubator', icon: Zap, route: '/incubator' },
+  { id: 'ta', title: 'Tech Atlas', icon: Database, route: '/atlas' },
+  { id: 'ds', title: 'Docker Studio', icon: Database, route: '/docker-studio' },
+  { id: 'dc', title: 'Deployment Center', icon: Activity, route: '/deployment-center' },
+  { id: 'ae', title: 'API Explorer', icon: Network, route: '/api-explorer' },
+  { id: 'de', title: 'Database Explorer', icon: Database, route: '/db-explorer' },
+  { id: 'ej', title: 'Engineering Journal', icon: FileText, route: '/journal' },
+  { id: 'en', title: 'Engineering Notebook', icon: FileText, route: '/notebook' },
+  { id: 'bs', title: 'Bookshelf', icon: BookOpen, route: '/bookshelf' },
+  { id: 'rn', title: 'Release Notes', icon: Activity, route: '/release-notes' },
+  { id: 'bl', title: 'Build Log', icon: Terminal, route: '/build-log' },
+  { id: 'ep', title: 'Engineering Passport', icon: FileText, route: '/passport' },
+  { id: 'lr', title: 'Learning Roadmap', icon: Map, route: '/roadmap' },
+  { id: 'ft', title: 'Favorite Tools', icon: Wrench, route: '/uses' },
+  { id: 'rs', title: 'Resources', icon: Database, route: '/resources' },
+  { id: 'fq', title: 'FAQ Terminal', icon: ShieldQuestion, route: '/faq' },
+];
 
 type Item = {
   label: string;
   hint: string;
+  icon: any;
   action: () => void;
-  icon?: any;
 };
 
 export function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const [search, setSearch] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const listRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  
-  const keyBuffer = useRef<string[]>([]);
+
+  // Vim-like quick key buffer
+  const [keyBuffer, setKeyBuffer] = useState("");
   const bufferTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const items: Item[] = useMemo(() => {
@@ -25,175 +59,198 @@ export function CommandPalette() {
       setIsOpen(false);
       navigate({ to: path });
     };
-    return [
-      { label: "Go to Home", hint: "page", icon: LayoutDashboard, action: go("/") },
-      { label: "Go to Now Dashboard", hint: "page", icon: Activity, action: go("/now") },
-      { label: "Go to Work", hint: "page", icon: Briefcase, action: go("/work") },
-      { label: "Go to Engineering Hub", hint: "page", icon: BrainCircuit, action: go("/engineering") },
-      { label: "Go to Technology Atlas", hint: "page", icon: Network, action: go("/atlas") },
-      { label: "Go to Architecture Gallery", hint: "page", icon: Box, action: go("/architecture") },
-      { label: "Go to Engineering Workflow", hint: "page", icon: Activity, action: go("/workflow") },
-      { label: "Go to Playground", hint: "page", icon: Terminal, action: go("/playground") },
-      { label: "Go to Experiment Lab", hint: "page", icon: Zap, action: go("/lab") },
-      { label: "Go to Engineering Notebook", hint: "page", icon: PenTool, action: go("/notebook") },
-      { label: "Go to Case Studies", hint: "page", icon: ShieldCheck, action: go("/case-studies") },
-      { label: "Go to Writing", hint: "page", icon: PenTool, action: go("/writing") },
-      { label: "Go to About", hint: "page", icon: User, action: go("/about") },
-      { label: "Go to Execution Timeline", hint: "page", icon: Activity, action: go("/timeline") },
-      { label: "Go to Learning Roadmap", hint: "page", icon: Map, action: go("/roadmap") },
-      { label: "Go to Achievements", hint: "page", icon: Award, action: go("/achievements") },
-      { label: "Go to Bookshelf", hint: "page", icon: BookOpen, action: go("/bookshelf") },
-      { label: "Go to Tools I Use", hint: "page", icon: Wrench, action: go("/uses") },
-      { label: "Go to FAQ", hint: "page", icon: ShieldQuestion, action: go("/faq") },
-      { label: "Go to Resources", hint: "page", icon: BookOpen, action: go("/resources") },
-      { label: "Download Resume", hint: "action", icon: BookOpen, action: () => window.open("/resume.pdf", "_blank") },
-      { label: "Contact", hint: "page", icon: Network, action: go("/contact") },
-      { label: "Enable X-Ray Mode", hint: "system", icon: Box, action: () => { document.body.classList.toggle('xray-mode'); setIsOpen(false); } },
-    ];
+    
+    return ACTIONS.map(a => ({
+      label: `Launch ${a.title}`,
+      hint: `app`,
+      icon: a.icon,
+      action: go(a.route)
+    }));
   }, [navigate]);
 
-  const filtered = items.filter((i) => i.label.toLowerCase().includes(query.toLowerCase()));
+  const filteredItems = useMemo(() => {
+    if (!search) return items;
+    const lower = search.toLowerCase();
+    return items.filter(
+      (item) =>
+        item.label.toLowerCase().includes(lower) ||
+        item.hint.toLowerCase().includes(lower)
+    );
+  }, [search, items]);
 
-  // Global Keyboard Shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Toggle Command Palette
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        setIsOpen((prev) => !prev);
-        return;
+        setIsOpen((open) => !open);
       }
-
-      // Ignore if palette is open or user is typing in an input
-      if (isOpen || document.activeElement?.tagName === "INPUT" || document.activeElement?.tagName === "TEXTAREA") return;
-
-      // Single Key Action
-      if (e.key.toLowerCase() === "x") {
-        document.body.classList.toggle("xray-mode");
-      }
-      
-      // Sequence Shortcuts (G + ...)
-      keyBuffer.current.push(e.key.toLowerCase());
-      if (keyBuffer.current.length > 2) keyBuffer.current.shift();
-
-      const seq = keyBuffer.current.join("");
-      if (seq === "gp") {
-        window.scrollTo({ top: document.getElementById('project-universe')?.offsetTop || 2000, behavior: 'smooth' });
-        keyBuffer.current = [];
-      } else if (seq === "ga") {
-        window.scrollTo({ top: document.getElementById('architecture-lab')?.offsetTop || 4000, behavior: 'smooth' });
-        keyBuffer.current = [];
-      } else if (seq === "gm") {
-        window.scrollTo({ top: 1000, behavior: 'smooth' });
-        keyBuffer.current = [];
-      } else if (seq === "gc") {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        keyBuffer.current = [];
-      }
-
-      // Clear buffer after 1 second of inactivity
-      if (bufferTimeout.current) clearTimeout(bufferTimeout.current);
-      bufferTimeout.current = setTimeout(() => { keyBuffer.current = []; }, 1000);
+      if (e.key === "Escape") setIsOpen(false);
     };
-
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      if (bufferTimeout.current) clearTimeout(bufferTimeout.current);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSearch("");
+      setSelectedIndex(0);
+      setKeyBuffer("");
+    }
   }, [isOpen]);
 
   useEffect(() => {
-    setSelectedIndex(0);
-  }, [query, isOpen]);
+    const handleNavigation = (e: KeyboardEvent) => {
+      if (!isOpen) {
+        // Vim-like global quick navigation (if not typing in an input)
+        if (document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+          // Accumulate keys for fast jumps e.g. "aa" for architecture atlas
+          if (e.key.length === 1 && !e.metaKey && !e.ctrlKey) {
+            const char = e.key.toLowerCase();
+            setKeyBuffer(prev => {
+              const newBuffer = prev + char;
+              
+              // Check if buffer matches any action ID directly
+              const exactMatch = ACTIONS.find(a => a.id === newBuffer);
+              if (exactMatch) {
+                navigate({ to: exactMatch.route });
+                return ""; // clear buffer after match
+              }
+              return newBuffer;
+            });
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (isOpen) {
-        if (e.key === "ArrowDown") {
-          e.preventDefault();
-          setSelectedIndex((prev) => (prev < filtered.length - 1 ? prev + 1 : prev));
-        } else if (e.key === "ArrowUp") {
-          e.preventDefault();
-          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : 0));
-        } else if (e.key === "Enter") {
-          e.preventDefault();
-          if (filtered[selectedIndex]) {
-            filtered[selectedIndex].action();
+            // Clear buffer after 1.5s
+            if (bufferTimeout.current) clearTimeout(bufferTimeout.current);
+            bufferTimeout.current = setTimeout(() => {
+              setKeyBuffer("");
+            }, 1500);
           }
-        } else if (e.key === "Escape") {
-          setIsOpen(false);
+        }
+        return;
+      }
+      
+      if (e.key === "ArrowDown" || (e.ctrlKey && e.key === "j")) {
+        e.preventDefault();
+        setSelectedIndex((prev) =>
+          prev < filteredItems.length - 1 ? prev + 1 : prev
+        );
+      }
+      if (e.key === "ArrowUp" || (e.ctrlKey && e.key === "k")) {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+      }
+      if (e.key === "Enter") {
+        e.preventDefault();
+        if (filteredItems[selectedIndex]) {
+          filteredItems[selectedIndex].action();
         }
       }
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [isOpen, filtered, selectedIndex]);
-
-  useEffect(() => {
-    if (listRef.current && isOpen) {
-      const selectedEl = listRef.current.children[selectedIndex] as HTMLElement;
-      if (selectedEl) selectedEl.scrollIntoView({ block: "nearest" });
-    }
-  }, [selectedIndex, isOpen]);
+    window.addEventListener("keydown", handleNavigation);
+    return () => window.removeEventListener("keydown", handleNavigation);
+  }, [isOpen, filteredItems, selectedIndex, navigate]);
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
-          className="fixed inset-0 z-[300] flex items-start justify-center bg-black/40 px-4 pt-[20vh] backdrop-blur-xl"
-          onClick={() => setIsOpen(false)}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: -8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: -8 }}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a]/90 shadow-2xl backdrop-blur-2xl"
+    <>
+      {/* Global Quick Action HUD Indicator */}
+      <AnimatePresence>
+        {keyBuffer && !isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed bottom-6 right-6 z-50 bg-[var(--electric)] text-black px-4 py-2 rounded-lg font-mono font-bold shadow-[0_0_20px_rgba(0,180,255,0.4)] flex items-center gap-2"
           >
-            <div className="flex items-center gap-3 border-b border-white/10 px-4">
-              <Search className="h-5 w-5 text-[var(--electric)]" />
-              <input
-                autoFocus 
-                value={query} 
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search commands, navigate OS..."
-                className="flex-1 bg-transparent py-4 text-base outline-none placeholder:text-muted-foreground text-white"
-              />
-            </div>
-            
-            <div ref={listRef} className="max-h-[60vh] overflow-y-auto p-2 scrollbar-none">
-              {filtered.length === 0 && (
-                <div className="px-3 py-12 text-center text-sm font-mono text-white/40">Command not found.</div>
-              )}
-              {filtered.map((it, idx) => (
-                <button
-                  key={it.label}
-                  onClick={it.action}
-                  onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`group flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm transition-all duration-200 ${
-                    selectedIndex === idx 
-                      ? 'bg-[var(--electric)]/10 text-white shadow-[inset_0_0_20px_rgba(0,180,255,0.1)] border border-[var(--electric)]/20' 
-                      : 'text-white/70 hover:bg-white/5 border border-transparent'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    {it.icon && <it.icon className={`h-4 w-4 ${selectedIndex === idx ? 'text-[var(--electric)]' : 'text-zinc-500'}`} />}
-                    <span className={`transition-transform duration-300 ${selectedIndex === idx ? 'translate-x-1' : 'translate-x-0'}`}>{it.label}</span>
-                  </div>
-                  <span className={`font-mono text-[10px] uppercase tracking-widest ${selectedIndex === idx ? 'text-[var(--electric)]' : 'text-white/30'}`}>
-                    {it.hint}
-                  </span>
-                </button>
-              ))}
-            </div>
+            <Search className="w-4 h-4" /> 
+            <span>{keyBuffer}</span>
+            <span className="w-1.5 h-4 bg-black animate-pulse" />
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+              onClick={() => setIsOpen(false)}
+            />
+            <div className="fixed inset-0 z-[101] flex items-start justify-center pt-[15vh] px-4 pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="w-full max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto"
+              >
+                <div className="flex items-center gap-3 px-4 py-4 border-b border-white/10">
+                  <Search className="w-5 h-5 text-white/40" />
+                  <input
+                    autoFocus
+                    placeholder="Search apps, logs, and research..."
+                    value={search}
+                    onChange={(e) => {
+                      setSearch(e.target.value);
+                      setSelectedIndex(0);
+                    }}
+                    className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-white/30 font-mono"
+                  />
+                  <div className="flex gap-1">
+                    <kbd className="hidden sm:inline-flex px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-white/40 font-mono">
+                      ESC
+                    </kbd>
+                  </div>
+                </div>
+                
+                <div className="max-h-[60vh] overflow-y-auto p-2 scrollbar-none">
+                  {filteredItems.length === 0 ? (
+                    <div className="py-12 text-center text-white/40 font-mono text-sm">
+                      No applications found matching "{search}"
+                    </div>
+                  ) : (
+                    filteredItems.map((item, i) => {
+                      const isSelected = i === selectedIndex;
+                      return (
+                        <div
+                          key={item.label}
+                          onMouseEnter={() => setSelectedIndex(i)}
+                          onClick={item.action}
+                          className={`flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer transition-colors ${
+                            isSelected
+                              ? "bg-[var(--electric)]/10 text-[var(--cyan)]"
+                              : "text-white/60 hover:text-white hover:bg-white/5"
+                          }`}
+                        >
+                          <item.icon className="w-5 h-5 opacity-70" />
+                          <div className="flex-1 flex flex-col">
+                            <span className="font-medium text-sm">{item.label}</span>
+                          </div>
+                          <span className="text-[10px] uppercase tracking-widest opacity-50 font-mono border border-current px-1.5 py-0.5 rounded">
+                            {item.hint}
+                          </span>
+                          {isSelected && (
+                            <ArrowRight className="w-4 h-4 text-[var(--cyan)]" />
+                          )}
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+                
+                <div className="px-4 py-2 border-t border-white/10 bg-black/50 text-[10px] text-white/30 font-mono flex items-center justify-between">
+                  <div className="flex gap-4">
+                    <span><kbd className="bg-white/10 px-1 py-0.5 rounded">↑</kbd> <kbd className="bg-white/10 px-1 py-0.5 rounded">↓</kbd> to navigate</span>
+                    <span><kbd className="bg-white/10 px-1 py-0.5 rounded">↵</kbd> to select</span>
+                  </div>
+                  <div>NEXUS_OS // CORE_SYSTEM</div>
+                </div>
+              </motion.div>
+            </div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

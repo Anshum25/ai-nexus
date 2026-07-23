@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Database, Box, Cpu, FileJson, FileText, Regex, Settings2, ShieldCheck, Zap, Server, Code2, X } from 'lucide-react';
 
-export const Route = createFileRoute('/playground')({
+export const Route = createFileRoute('/innovation-lab')({
   component: PlaygroundComponent,
 })
 

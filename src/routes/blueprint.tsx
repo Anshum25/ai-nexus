@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { motion } from "framer-motion";
 import { Terminal, Code2, GitMerge, Server, Headphones, Book, Coffee, ShieldCheck, Database } from "lucide-react";
 
-export const Route = createFileRoute('/about')({
+export const Route = createFileRoute('/blueprint')({
   component: AboutComponent,
 })
 
