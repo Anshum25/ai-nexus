@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const SITE_URL = 'https://anshumdev.com';
+const SITE_URL = 'https://theanshumdev.site';
 
 function generateSitemap() {
   const routesDir = path.resolve(process.cwd(), 'src/routes');

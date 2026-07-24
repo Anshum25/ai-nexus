@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
   name: "Anshum Dev | AI Engineer & Systems Architect",
   description: "Portfolio of Anshum Dev, an AI Engineer specializing in Enterprise Software, LLMs, RAG pipelines, and highly scalable Backend Architecture.",
-  url: "https://anshumdev.com", // Replace with actual production URL if different
-  ogImage: "https://anshumdev.com/og-image.png",
+  url: "https://theanshumdev.site", // Replace with actual production URL if different
+  ogImage: "https://theanshumdev.site/og-image.png",
   twitterHandle: "@TheAnshumDev",
   keywords: [
     "AI Engineer",
