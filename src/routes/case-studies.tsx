@@ -1,8 +1,22 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { motion } from "framer-motion";
 import { Server, Database, BrainCircuit, Activity, Lock, ArrowRight, ShieldCheck, CheckCircle2, AlertTriangle, Code2 } from "lucide-react";
+import { constructSEO, generateProjectSchema } from "@/lib/seo";
 
 export const Route = createFileRoute('/case-studies')({
+  head: () => constructSEO({
+    title: "Enterprise Multi-Tenant AI Integration Case Study",
+    description: "Detailed case study on architecting and deploying a multi-tenant Generative AI system enforcing strict row-level SQL permissions directly within Vector DB.",
+    path: "/case-studies",
+    keywords: ["AI Case Study", "RAG Integration", "Multi-tenancy", "Qdrant", "FastAPI"],
+    scripts: [
+      generateProjectSchema({
+        name: "Enterprise Multi-Tenant AI Integration",
+        description: "A Generative AI system enforcing row-level SQL permissions in a Vector DB.",
+        url: "/case-studies",
+      })
+    ]
+  }),
   component: CaseStudiesComponent,
 })
 

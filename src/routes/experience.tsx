@@ -3,8 +3,15 @@ import { useState, useEffect, useRef } from 'react';
 import { ElevatorNavigation } from '../components/portfolio/experience/ElevatorNavigation';
 import { CompanyFloor, CompanyData } from '../components/portfolio/experience/CompanyFloor';
 import { Bot, Server, Shield, Cloud, Terminal, Cpu } from 'lucide-react';
+import { constructSEO } from "@/lib/seo";
 
 export const Route = createFileRoute('/experience')({
+  head: () => constructSEO({
+    title: "Experience | Anshum Dev",
+    description: "Engineering experience across Enterprise AI, FinTech, and Logistics. View my journey as a Backend & AI Engineer.",
+    path: "/experience",
+    keywords: ["Backend Engineer Experience", "AI Engineer Experience", "Enterprise Software Engineer"],
+  }),
   component: ExperienceCenter,
 });
 

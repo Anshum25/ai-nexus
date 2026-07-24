@@ -80,26 +80,28 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+import { constructSEO, generateWebSiteSchema, generatePersonSchema } from "@/lib/seo";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Portfolio.OS — Building Enterprise AI Systems" },
-      { name: "description", content: "Production-grade AI systems, RAG pipelines, agents and ERPNext platforms." },
-      { property: "og:title", content: "Portfolio.OS — Building Enterprise AI Systems" },
-      { property: "og:description", content: "Production-grade AI systems, RAG pipelines, agents and ERPNext platforms." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-  }),
+  head: () => {
+    const seo = constructSEO({
+      scripts: [generateWebSiteSchema(), generatePersonSchema()]
+    });
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        ...seo.meta,
+      ],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+        ...seo.links,
+      ],
+      scripts: seo.scripts,
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

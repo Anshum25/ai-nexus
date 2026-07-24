@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { constructSEO } from "@/lib/seo";
 
 import { CinematicHero } from "@/components/portfolio/CinematicHero";
 import { Ch02_Mission } from "@/components/portfolio/home/Ch02_Mission";
@@ -14,14 +15,10 @@ import { Ch11_Vision } from "@/components/portfolio/home/Ch11_Vision";
 import { Ch12_Contact } from "@/components/portfolio/home/Ch12_Contact";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "NEXUS — Premium Engineering Experience" },
-      {
-        name: "description",
-        content: "A cinematic table of contents exploring architectural thought, scalable design, and AI-native engineering.",
-      },
-    ],
+  head: () => constructSEO({
+    title: "Anshum Dev | AI Engineer & Systems Architect",
+    description: "Production-grade AI systems, RAG pipelines, agents and ERPNext platforms. Portfolio of Anshum Dev.",
+    path: "/",
   }),
   component: Index,
 });

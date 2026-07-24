@@ -2,8 +2,15 @@ import { createFileRoute } from '@tanstack/react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Workflow, X, Crosshair } from 'lucide-react';
+import { constructSEO } from "@/lib/seo";
 
 export const Route = createFileRoute('/architecture-atlas')({
+  head: () => constructSEO({
+    title: "Architecture Atlas | Enterprise AI Systems Design",
+    description: "Explore interactive blueprints and system designs for enterprise AI architecture, including Multi-Tenant RAG pipelines.",
+    path: "/architecture-atlas",
+    keywords: ["AI Architecture", "System Design", "Enterprise AI", "RAG Pipeline", "Backend Architecture"],
+  }),
   component: ArchitectureAtlasComponent,
 });
 
