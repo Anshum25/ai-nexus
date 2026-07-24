@@ -1,12 +1,22 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function WelcomeModal({ onDismiss }: { onDismiss: () => void }) {
+  const [timeLeft, setTimeLeft] = useState(10);
+
   useEffect(() => {
-    const t = setTimeout(() => {
-      onDismiss();
-    }, 10000); // 10 seconds auto-dismiss
-    return () => clearTimeout(t);
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          onDismiss();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    
+    return () => clearInterval(timer);
   }, [onDismiss]);
 
   return (
@@ -32,17 +42,17 @@ export function WelcomeModal({ onDismiss }: { onDismiss: () => void }) {
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="mb-6 h-[1px] w-12 bg-[var(--cyan)]/30" />
           
-          <h2 className="mb-1 font-mono text-xl uppercase tracking-[0.2em] text-white/90">
+          <h2 className="mb-1 font-mono text-xl uppercase tracking-[0.2em] text-[var(--foreground)]/90">
             Welcome to NEXUS
           </h2>
-          <p className="mb-10 font-mono text-[10px] uppercase tracking-widest text-white/40">
+          <p className="mb-10 font-mono text-[10px] uppercase tracking-widest text-[var(--foreground)]/40">
             Engineering Workspace
           </p>
 
-          <div className="mb-10 flex flex-col gap-3 font-serif text-lg font-light italic text-white/80 leading-relaxed">
+          <div className="mb-10 flex flex-col gap-3 font-serif text-lg font-light italic text-[var(--foreground)]/80 leading-relaxed">
             <p>"Great software isn't built by writing<br/>more code.</p>
             <p>It is built by making better decisions."</p>
-            <p className="mt-3 font-sans text-xs not-italic tracking-widest text-white/40 uppercase">— Radha</p>
+            <p className="mt-3 font-sans text-xs not-italic tracking-widest text-[var(--foreground)]/40 uppercase">— Radha</p>
           </div>
 
           <div className="mb-8 h-[1px] w-24 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -56,9 +66,14 @@ export function WelcomeModal({ onDismiss }: { onDismiss: () => void }) {
                 className="h-full bg-[var(--cyan)] shadow-[0_0_10px_rgba(0,180,255,0.5)]"
               />
             </div>
-            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/30">
-              Entering Workspace...
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-[var(--foreground)]/30">
+                Entering Workspace
+              </span>
+              <span className="font-mono text-[10px] text-[var(--cyan)]">
+                00:{timeLeft.toString().padStart(2, '0')}
+              </span>
+            </div>
           </div>
         </div>
       </motion.div>

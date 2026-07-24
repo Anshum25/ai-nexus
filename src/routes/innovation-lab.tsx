@@ -49,12 +49,12 @@ function PlaygroundComponent() {
               className="glass p-6 text-left rounded-2xl border border-white/5 hover:border-[var(--electric)]/50 transition-colors group flex flex-col justify-between h-40"
             >
               <div className="flex justify-between items-start">
-                <tool.icon className="w-8 h-8 text-white/40 group-hover:text-[var(--cyan)] transition-colors" />
-                <span className={`text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded ${tool.type === 'functional' ? 'bg-green-500/20 text-green-400' : 'bg-white/5 text-white/40'}`}>
+                <tool.icon className="w-8 h-8 text-[var(--foreground)]/40 group-hover:text-[var(--cyan)] transition-colors" />
+                <span className={`text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded ${tool.type === 'functional' ? 'bg-green-500/20 text-green-400' : 'bg-white/5 text-[var(--foreground)]/40'}`}>
                   {tool.type === 'functional' ? 'Live' : 'Simulated'}
                 </span>
               </div>
-              <h3 className="font-bold text-white group-hover:text-[var(--electric)] transition-colors">{tool.name}</h3>
+              <h3 className="font-bold text-[var(--foreground)] group-hover:text-[var(--electric)] transition-colors">{tool.name}</h3>
             </motion.button>
           ))}
         </div>
@@ -73,12 +73,12 @@ function PlaygroundComponent() {
               <div className="flex items-center gap-4">
                 <activeTool.icon className="w-6 h-6 text-[var(--cyan)]" />
                 <div>
-                  <div className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Interactive Tool</div>
-                  <h2 className="text-xl font-bold text-white">{activeTool.name}</h2>
+                  <div className="text-[10px] font-mono text-[var(--foreground)]/40 uppercase tracking-widest">Interactive Tool</div>
+                  <h2 className="text-xl font-bold text-[var(--foreground)]">{activeTool.name}</h2>
                 </div>
               </div>
               <button onClick={() => setActiveTool(null)} className="p-2 rounded-full hover:bg-white/10 transition-colors">
-                <X className="w-6 h-6 text-white/70" />
+                <X className="w-6 h-6 text-[var(--foreground)]/70" />
               </button>
             </div>
             
@@ -86,9 +86,9 @@ function PlaygroundComponent() {
               <div className="max-w-4xl mx-auto w-full">
                 {activeTool.type === 'mock' && (
                   <div className="h-[60vh] border border-dashed border-white/20 rounded-2xl flex flex-col items-center justify-center text-center p-8">
-                    <Settings2 className="w-16 h-16 text-white/20 mb-6 animate-spin-slow" />
-                    <h3 className="text-2xl font-bold text-white mb-2">Simulation Engine Online</h3>
-                    <p className="text-white/50 max-w-md">This environment is currently running a high-fidelity visual simulation. Full interactive capabilities are locked for guests.</p>
+                    <Settings2 className="w-16 h-16 text-[var(--foreground)]/20 mb-6 animate-spin-slow" />
+                    <h3 className="text-2xl font-bold text-[var(--foreground)] mb-2">Simulation Engine Online</h3>
+                    <p className="text-[var(--foreground)]/50 max-w-md">This environment is currently running a high-fidelity visual simulation. Full interactive capabilities are locked for guests.</p>
                   </div>
                 )}
                 
@@ -123,16 +123,16 @@ function JSONFormatter() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[60vh]">
       <div className="flex flex-col h-full">
-        <label className="text-xs font-mono uppercase text-white/40 mb-2">Raw JSON</label>
+        <label className="text-xs font-mono uppercase text-[var(--foreground)]/40 mb-2">Raw JSON</label>
         <textarea 
-          className="flex-1 bg-black/40 border border-white/10 rounded-xl p-4 text-sm font-mono text-white focus:border-[var(--electric)] outline-none resize-none"
+          className="flex-1 bg-black/40 border border-white/10 rounded-xl p-4 text-sm font-mono text-[var(--foreground)] focus:border-[var(--electric)] outline-none resize-none"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
         <button onClick={format} className="mt-4 py-3 bg-[var(--electric)]/20 text-[var(--cyan)] font-mono text-sm rounded-xl hover:bg-[var(--electric)]/30 transition-colors">Format Data</button>
       </div>
       <div className="flex flex-col h-full">
-        <label className="text-xs font-mono uppercase text-white/40 mb-2">Formatted Output</label>
+        <label className="text-xs font-mono uppercase text-[var(--foreground)]/40 mb-2">Formatted Output</label>
         <div className={`flex-1 bg-black/40 border rounded-xl p-4 text-sm font-mono overflow-auto ${error ? 'border-red-500/50 text-red-400' : 'border-white/10 text-green-400'}`}>
           {error ? `ERROR: ${error}` : <pre>{output}</pre>}
         </div>
@@ -155,19 +155,19 @@ function RegexTester() {
   return (
     <div className="space-y-6">
       <div>
-        <label className="text-xs font-mono uppercase text-white/40 mb-2 block">Regular Expression</label>
+        <label className="text-xs font-mono uppercase text-[var(--foreground)]/40 mb-2 block">Regular Expression</label>
         <div className="flex gap-2">
-          <span className="p-3 bg-white/5 rounded-l-xl border border-white/10 text-white/50 border-r-0">/</span>
+          <span className="p-3 bg-white/5 rounded-l-xl border border-white/10 text-[var(--foreground)]/50 border-r-0">/</span>
           <input 
             type="text" 
             className="flex-1 bg-black/40 border border-white/10 p-3 font-mono text-[var(--cyan)] outline-none"
             value={regex}
             onChange={(e) => setRegex(e.target.value)}
           />
-          <span className="p-3 bg-white/5 border border-white/10 text-white/50 border-l-0 border-r-0">/</span>
+          <span className="p-3 bg-white/5 border border-white/10 text-[var(--foreground)]/50 border-l-0 border-r-0">/</span>
           <input 
             type="text" 
-            className="w-16 bg-black/40 border border-white/10 rounded-r-xl p-3 font-mono text-white/50 outline-none"
+            className="w-16 bg-black/40 border border-white/10 rounded-r-xl p-3 font-mono text-[var(--foreground)]/50 outline-none"
             value={flags}
             onChange={(e) => setFlags(e.target.value)}
           />
@@ -175,16 +175,16 @@ function RegexTester() {
       </div>
       
       <div>
-        <label className="text-xs font-mono uppercase text-white/40 mb-2 block">Test String</label>
+        <label className="text-xs font-mono uppercase text-[var(--foreground)]/40 mb-2 block">Test String</label>
         <textarea 
-          className="w-full h-32 bg-black/40 border border-white/10 rounded-xl p-4 text-sm font-mono text-white focus:border-[var(--electric)] outline-none resize-none"
+          className="w-full h-32 bg-black/40 border border-white/10 rounded-xl p-4 text-sm font-mono text-[var(--foreground)] focus:border-[var(--electric)] outline-none resize-none"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
       </div>
 
       <div>
-        <label className="text-xs font-mono uppercase text-white/40 mb-2 block">Matches ({matches.length})</label>
+        <label className="text-xs font-mono uppercase text-[var(--foreground)]/40 mb-2 block">Matches ({matches.length})</label>
         <div className="flex flex-wrap gap-2">
           {matches.map((m, i) => (
             <span key={i} className="px-3 py-1.5 bg-green-500/20 text-green-400 font-mono text-sm rounded border border-green-500/30">
@@ -203,16 +203,16 @@ function MarkdownPreviewer() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[60vh]">
       <div className="flex flex-col h-full">
-        <label className="text-xs font-mono uppercase text-white/40 mb-2">Markdown Editor</label>
+        <label className="text-xs font-mono uppercase text-[var(--foreground)]/40 mb-2">Markdown Editor</label>
         <textarea 
-          className="flex-1 bg-black/40 border border-white/10 rounded-xl p-4 text-sm font-mono text-white focus:border-[var(--electric)] outline-none resize-none"
+          className="flex-1 bg-black/40 border border-white/10 rounded-xl p-4 text-sm font-mono text-[var(--foreground)] focus:border-[var(--electric)] outline-none resize-none"
           value={md}
           onChange={(e) => setMd(e.target.value)}
         />
       </div>
       <div className="flex flex-col h-full">
-        <label className="text-xs font-mono uppercase text-white/40 mb-2">Live Preview</label>
-        <div className="flex-1 bg-black/40 border border-white/10 rounded-xl p-8 overflow-auto prose prose-invert prose-p:text-white/80">
+        <label className="text-xs font-mono uppercase text-[var(--foreground)]/40 mb-2">Live Preview</label>
+        <div className="flex-1 bg-black/40 border border-white/10 rounded-xl p-8 overflow-auto prose prose-invert prose-p:text-[var(--foreground)]/80">
           <div dangerouslySetInnerHTML={{ __html: md.replace(/^# (.*$)/gim, '<h1>$1</h1>').replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>').replace(/^\- (.*$)/gim, '<li>$1</li>') }} />
         </div>
       </div>

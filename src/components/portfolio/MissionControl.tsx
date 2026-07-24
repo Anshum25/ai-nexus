@@ -182,21 +182,21 @@ export function MissionControl() {
           
           <div className="flex flex-col md:flex-row gap-12">
             <div>
-              <div className="text-[4rem] font-bold text-white leading-none tracking-tighter flex items-center gap-4">
+              <div className="text-[4rem] font-bold text-[var(--foreground)] leading-none tracking-tighter flex items-center gap-4">
                 <span className="w-4 h-4 rounded-full bg-green-500 shadow-[0_0_20px_rgba(34,197,94,0.8)] animate-pulse" />
                 ONLINE
               </div>
-              <div className="mt-2 text-white/50 font-mono text-sm uppercase">Core Infrastructure</div>
+              <div className="mt-2 text-[var(--foreground)]/50 font-mono text-sm uppercase">Core Infrastructure</div>
             </div>
 
             <div className="grid grid-cols-2 gap-8 pt-2">
               <div>
-                <div className="text-3xl font-semibold text-white">8</div>
-                <div className="text-xs text-white/40 font-mono uppercase mt-1">Active Missions</div>
+                <div className="text-3xl font-semibold text-[var(--foreground)]">8</div>
+                <div className="text-xs text-[var(--foreground)]/40 font-mono uppercase mt-1">Active Missions</div>
               </div>
               <div>
-                <div className="text-3xl font-semibold text-white">12+</div>
-                <div className="text-xs text-white/40 font-mono uppercase mt-1">Prod Deployments</div>
+                <div className="text-3xl font-semibold text-[var(--foreground)]">12+</div>
+                <div className="text-xs text-[var(--foreground)]/40 font-mono uppercase mt-1">Prod Deployments</div>
               </div>
             </div>
           </div>
@@ -207,13 +207,13 @@ export function MissionControl() {
           <h3 className="font-mono text-[10px] uppercase tracking-widest text-[var(--electric)] mb-4 flex items-center gap-2">
             <span className="w-2 h-2 bg-[var(--electric)] animate-pulse" /> Live Feed
           </h3>
-          <div className="flex-1 font-mono text-[10px] text-white/60 space-y-2 overflow-hidden flex flex-col justify-end">
+          <div className="flex-1 font-mono text-[10px] text-[var(--foreground)]/60 space-y-2 overflow-hidden flex flex-col justify-end">
             {LOGS.slice(logIndex, logIndex + 5).map((log, i) => (
               <motion.div 
                 key={log + i}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                className={i === 4 ? "text-white" : ""}
+                className={i === 4 ? "text-[var(--foreground)]" : ""}
               >
                 &gt; {log}
               </motion.div>
@@ -239,17 +239,17 @@ export function MissionControl() {
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-4">
                 <div className="font-mono text-[10px] uppercase text-[var(--cyan)] tracking-widest">{mission.id}</div>
-                <div className="font-mono text-[10px] uppercase text-white/40">{mission.environment}</div>
+                <div className="font-mono text-[10px] uppercase text-[var(--foreground)]/40">{mission.environment}</div>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">{mission.name}</h3>
-              <p className="text-sm text-white/50 line-clamp-2">{mission.objective}</p>
+              <h3 className="text-xl font-semibold text-[var(--foreground)] mb-2">{mission.name}</h3>
+              <p className="text-sm text-[var(--foreground)]/50 line-clamp-2">{mission.objective}</p>
               
               <div className="mt-6 flex items-center justify-between font-mono text-[10px] uppercase">
                 <span className="text-[var(--electric)] flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--electric)]" />
                   {mission.status}
                 </span>
-                <span className="text-white/30 group-hover:text-[var(--cyan)] transition-colors">Access Case Study →</span>
+                <span className="text-[var(--foreground)]/30 group-hover:text-[var(--cyan)] transition-colors">Access Case Study →</span>
               </div>
             </div>
           </motion.button>
@@ -257,8 +257,8 @@ export function MissionControl() {
         
         {/* Placeholder for missing missions */}
         <div className="glass p-6 rounded-2xl border border-white/5 flex flex-col items-center justify-center text-center opacity-50">
-          <div className="font-mono text-[10px] uppercase text-white/30 tracking-widest mb-2">Restricted Access</div>
-          <div className="text-sm text-white/50">Additional missions classified.</div>
+          <div className="font-mono text-[10px] uppercase text-[var(--foreground)]/30 tracking-widest mb-2">Restricted Access</div>
+          <div className="text-sm text-[var(--foreground)]/50">Additional missions classified.</div>
         </div>
       </div>
 

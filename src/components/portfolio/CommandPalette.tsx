@@ -183,10 +183,10 @@ export function CommandPalette() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: -20 }}
                 transition={{ duration: 0.15, ease: "easeOut" }}
-                className="w-full max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto"
+                className="w-full max-w-2xl bg-[var(--background)] border border-white/10 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto"
               >
                 <div className="flex items-center gap-3 px-4 py-4 border-b border-white/10">
-                  <Search className="w-5 h-5 text-white/40" />
+                  <Search className="w-5 h-5 text-[var(--foreground)]/40" />
                   <input
                     autoFocus
                     placeholder="Search apps, logs, and research..."
@@ -195,10 +195,10 @@ export function CommandPalette() {
                       setSearch(e.target.value);
                       setSelectedIndex(0);
                     }}
-                    className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-white/30 font-mono"
+                    className="flex-1 bg-transparent border-none outline-none text-[var(--foreground)] placeholder:text-[var(--foreground)]/30 font-mono"
                   />
                   <div className="flex gap-1">
-                    <kbd className="hidden sm:inline-flex px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-white/40 font-mono">
+                    <kbd className="hidden sm:inline-flex px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] text-[var(--foreground)]/40 font-mono">
                       ESC
                     </kbd>
                   </div>
@@ -206,7 +206,7 @@ export function CommandPalette() {
                 
                 <div className="max-h-[60vh] overflow-y-auto p-2 scrollbar-none">
                   {filteredItems.length === 0 ? (
-                    <div className="py-12 text-center text-white/40 font-mono text-sm">
+                    <div className="py-12 text-center text-[var(--foreground)]/40 font-mono text-sm">
                       No applications found matching "{search}"
                     </div>
                   ) : (
@@ -220,7 +220,7 @@ export function CommandPalette() {
                           className={`flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer transition-colors ${
                             isSelected
                               ? "bg-[var(--electric)]/10 text-[var(--cyan)]"
-                              : "text-white/60 hover:text-white hover:bg-white/5"
+                              : "text-[var(--foreground)]/60 hover:text-[var(--foreground)] hover:bg-white/5"
                           }`}
                         >
                           <item.icon className="w-5 h-5 opacity-70" />
@@ -239,7 +239,7 @@ export function CommandPalette() {
                   )}
                 </div>
                 
-                <div className="px-4 py-2 border-t border-white/10 bg-black/50 text-[10px] text-white/30 font-mono flex items-center justify-between">
+                <div className="px-4 py-2 border-t border-white/10 bg-black/50 text-[10px] text-[var(--foreground)]/30 font-mono flex items-center justify-between">
                   <div className="flex gap-4">
                     <span><kbd className="bg-white/10 px-1 py-0.5 rounded">↑</kbd> <kbd className="bg-white/10 px-1 py-0.5 rounded">↓</kbd> to navigate</span>
                     <span><kbd className="bg-white/10 px-1 py-0.5 rounded">↵</kbd> to select</span>

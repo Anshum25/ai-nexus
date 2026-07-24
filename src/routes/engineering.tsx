@@ -68,7 +68,7 @@ function EngineeringComponent() {
         {/* Sidebar Navigation */}
         <div className="w-full md:w-64 shrink-0">
           <div className="sticky top-32">
-            <h2 className="text-xs font-mono uppercase tracking-widest text-white/40 mb-6 px-4">Engineering Hub</h2>
+            <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--foreground)]/40 mb-6 px-4">Engineering Hub</h2>
             <nav className="space-y-1">
               {CATEGORIES.map(cat => (
                 <button
@@ -77,7 +77,7 @@ function EngineeringComponent() {
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-sm font-medium ${
                     activeCategory === cat.name 
                     ? "bg-[var(--electric)]/10 text-[var(--cyan)] border border-[var(--electric)]/20 shadow-[inset_0_0_20px_rgba(0,180,255,0.1)]" 
-                    : "text-white/60 hover:text-white hover:bg-white/5 border border-transparent"
+                    : "text-[var(--foreground)]/60 hover:text-[var(--foreground)] hover:bg-white/5 border border-transparent"
                   }`}
                 >
                   <cat.icon className="w-4 h-4" />
@@ -99,8 +99,8 @@ function EngineeringComponent() {
               className="space-y-12"
             >
               <header className="border-b border-white/10 pb-8">
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">{activeCategory}</h1>
-                <p className="text-xl text-white/70 leading-relaxed max-w-3xl">{data.overview}</p>
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--foreground)] mb-6">{activeCategory}</h1>
+                <p className="text-xl text-[var(--foreground)]/70 leading-relaxed max-w-3xl">{data.overview}</p>
               </header>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -108,7 +108,7 @@ function EngineeringComponent() {
                 <div className="glass p-8 rounded-3xl border border-white/5">
                   <h3 className="text-lg font-bold flex items-center gap-2 mb-6"><BookOpen className="w-5 h-5 text-[var(--electric)]" /> Core Concepts</h3>
                   <div className="flex flex-wrap gap-2">
-                    {data.concepts.map(c => <span key={c} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80">{c}</span>)}
+                    {data.concepts.map(c => <span key={c} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-[var(--foreground)]/80">{c}</span>)}
                   </div>
                 </div>
 

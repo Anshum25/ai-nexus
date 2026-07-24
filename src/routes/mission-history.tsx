@@ -47,7 +47,7 @@ const COMMITS = [
 
 function MissionHistoryComponent() {
   return (
-    <div className="pt-24 pb-32 bg-black min-h-screen font-mono text-white selection:bg-red-900 selection:text-white">
+    <div className="pt-24 pb-32 bg-black min-h-screen font-mono text-[var(--foreground)] selection:bg-red-900 selection:text-[var(--foreground)]">
       <div className="container mx-auto px-6 max-w-4xl relative">
         
         {/* Background Grid */}
@@ -59,7 +59,7 @@ function MissionHistoryComponent() {
             <div className="w-4 h-4 bg-red-600 animate-pulse" />
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight uppercase">Mission Logs</h1>
           </div>
-          <div className="flex flex-wrap gap-6 text-xs text-white/50 tracking-widest uppercase">
+          <div className="flex flex-wrap gap-6 text-xs text-[var(--foreground)]/50 tracking-widest uppercase">
             <span>SYS_TIME: {new Date().toISOString()}</span>
             <span>DATA_LINK: STABLE</span>
             <span>TELEMETRY: ACTIVE</span>
@@ -82,26 +82,26 @@ function MissionHistoryComponent() {
               >
                 {/* Node */}
                 <div className={`absolute left-[13px] top-1 w-7 h-7 rounded border bg-black flex items-center justify-center z-10 transition-colors
-                  ${commit.status === 'ACTIVE' ? 'border-red-600 text-red-500 shadow-[0_0_15px_rgba(220,38,38,0.5)]' : 'border-white/20 text-white/40'}
+                  ${commit.status === 'ACTIVE' ? 'border-red-600 text-red-500 shadow-[0_0_15px_rgba(220,38,38,0.5)]' : 'border-white/20 text-[var(--foreground)]/40'}
                 `}>
                   <commit.icon className="w-3.5 h-3.5" />
                 </div>
 
                 {/* Content */}
-                <div className="bg-[#050505] p-6 border border-white/10 relative overflow-hidden group-hover:border-red-900/50 transition-colors">
-                  <div className="absolute top-0 right-0 px-2 py-1 bg-white/5 text-[10px] text-white/30 tracking-widest">{commit.sys}</div>
+                <div className="bg-[var(--background)] p-6 border border-white/10 relative overflow-hidden group-hover:border-red-900/50 transition-colors">
+                  <div className="absolute top-0 right-0 px-2 py-1 bg-white/5 text-[10px] text-[var(--foreground)]/30 tracking-widest">{commit.sys}</div>
                   
                   <div className="flex items-center gap-4 mb-4">
                     <span className="text-red-500 font-bold">{commit.id}</span>
-                    <span className="text-white/40 text-xs tracking-widest">{commit.date}</span>
+                    <span className="text-[var(--foreground)]/40 text-xs tracking-widest">{commit.date}</span>
                     <span className={`px-2 py-0.5 text-[10px] uppercase tracking-wider
-                      ${commit.status === 'ACTIVE' ? 'bg-red-900/20 text-red-400 border border-red-900/50' : 'bg-white/5 text-white/50'}
+                      ${commit.status === 'ACTIVE' ? 'bg-red-900/20 text-red-400 border border-red-900/50' : 'bg-white/5 text-[var(--foreground)]/50'}
                     `}>
                       {commit.status}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide">{commit.title}</h3>
-                  <p className="text-white/60 font-sans text-sm leading-relaxed max-w-2xl">{commit.details}</p>
+                  <h3 className="text-xl font-bold text-[var(--foreground)] mb-2 uppercase tracking-wide">{commit.title}</h3>
+                  <p className="text-[var(--foreground)]/60 font-sans text-sm leading-relaxed max-w-2xl">{commit.details}</p>
                 </div>
               </motion.div>
             ))}

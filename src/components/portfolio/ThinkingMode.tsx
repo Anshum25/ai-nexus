@@ -13,7 +13,7 @@ export function ThinkingMode({ project, onClose }: { project: ProjectData, onClo
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[300] bg-[#fdfbf7] text-[#2d2822] overflow-hidden font-serif selection:bg-yellow-200"
+      className="fixed inset-0 z-[300] bg-[var(--background)] text-[#2d2822] overflow-hidden font-serif selection:bg-yellow-200"
     >
       {/* Notebook Texture Overlay */}
       <div 
@@ -26,7 +26,7 @@ export function ThinkingMode({ project, onClose }: { project: ProjectData, onClo
       <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-stone-300 via-stone-200 to-transparent border-r border-stone-300/50 shadow-[5px_0_15px_rgba(0,0,0,0.05)] z-0" />
 
       {/* Header */}
-      <header className="relative z-20 flex flex-col md:flex-row md:items-center justify-between p-6 pl-12 md:pl-24 border-b border-stone-200 bg-[#fdfbf7]/90 backdrop-blur-md">
+      <header className="relative z-20 flex flex-col md:flex-row md:items-center justify-between p-6 pl-12 md:pl-24 border-b border-stone-200 bg-[var(--background)]/90 backdrop-blur-md">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-1 flex items-center gap-3">
             <PenLine className="w-6 h-6 text-stone-400" />
@@ -139,7 +139,7 @@ function DecisionNode({ problem, alternatives, choice, reason }: { problem: stri
         <div className="flex flex-wrap items-center gap-3 mb-6">
           {alternatives.map((alt, i) => (
             <div key={alt} className="flex items-center gap-3">
-              <span className={`px-3 py-1 rounded-md text-sm font-medium ${alt === choice ? "bg-stone-800 text-white shadow-md" : "bg-stone-100 text-stone-500 line-through"}`}>
+              <span className={`px-3 py-1 rounded-md text-sm font-medium ${alt === choice ? "bg-stone-800 text-[var(--foreground)] shadow-md" : "bg-stone-100 text-stone-500 line-through"}`}>
                 {alt}
               </span>
               {i < alternatives.length - 1 && <ArrowRight className="w-4 h-4 text-stone-300" />}

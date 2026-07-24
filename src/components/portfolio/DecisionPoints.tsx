@@ -75,7 +75,7 @@ export function DecisionPoints() {
                   onClick={() => setActiveId(activeId === decision.id ? null : decision.id)}
                   className={`w-full text-left ${i % 2 !== 0 ? 'md:text-right' : ''} p-6 rounded-2xl glass transition-all duration-300 ${activeId === decision.id ? 'border border-[var(--cyan)] shadow-[0_0_30px_rgba(0,255,255,0.1)]' : 'border border-white/5 hover:border-white/20'}`}
                 >
-                  <h3 className="text-xl font-semibold text-white tracking-tight">{decision.title}</h3>
+                  <h3 className="text-xl font-semibold text-[var(--foreground)] tracking-tight">{decision.title}</h3>
                   
                   <AnimatePresence>
                     {activeId === decision.id && (
@@ -87,15 +87,15 @@ export function DecisionPoints() {
                       >
                         <div className="p-4 rounded-xl bg-white/5">
                           <span className="block text-[10px] font-mono uppercase text-[var(--cyan)] mb-1">Why</span>
-                          <span className="text-white/80">{decision.why}</span>
+                          <span className="text-[var(--foreground)]/80">{decision.why}</span>
                         </div>
                         <div className="p-4 rounded-xl bg-white/5 border-l-2 border-red-500/50">
                           <span className="block text-[10px] font-mono uppercase text-red-400 mb-1">Tradeoffs</span>
-                          <span className="text-white/80">{decision.tradeoffs}</span>
+                          <span className="text-[var(--foreground)]/80">{decision.tradeoffs}</span>
                         </div>
                         <div className="p-4 rounded-xl bg-[var(--electric)]/10 border border-[var(--electric)]/30">
                           <span className="block text-[10px] font-mono uppercase text-[var(--electric)] mb-1">Outcome</span>
-                          <span className="text-white">{decision.outcome}</span>
+                          <span className="text-[var(--foreground)]">{decision.outcome}</span>
                         </div>
                       </motion.div>
                     )}

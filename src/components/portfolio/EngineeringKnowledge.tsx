@@ -69,7 +69,7 @@ export function EngineeringKnowledge() {
           <button
             key={cat.id}
             onClick={() => { setActiveCategory(cat.id); setActiveItem(0); }}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-mono text-sm whitespace-nowrap transition-all \${activeCategory === cat.id ? 'bg-[var(--electric)] text-black font-semibold' : 'glass text-white hover:bg-white/10'}`}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full font-mono text-sm whitespace-nowrap transition-all \${activeCategory === cat.id ? 'bg-[var(--electric)] text-black font-semibold' : 'glass text-[var(--foreground)] hover:bg-white/10'}`}
           >
             <cat.icon className="w-4 h-4" />
             {cat.title}
@@ -89,7 +89,7 @@ export function EngineeringKnowledge() {
                 className={`text-left p-6 rounded-2xl transition-all border \${activeItem === idx ? 'bg-white/10 border-[var(--cyan)] shadow-[0_0_20px_rgba(0,255,255,0.1)]' : 'glass border-transparent hover:border-white/10'}`}
               >
                 <h3 className="text-xl font-semibold mb-2">{item.tech}</h3>
-                <p className="text-sm text-white/50 line-clamp-2">{item.why}</p>
+                <p className="text-sm text-[var(--foreground)]/50 line-clamp-2">{item.why}</p>
               </button>
             ))}
           </div>
@@ -114,7 +114,7 @@ export function EngineeringKnowledge() {
                   <div className="space-y-8 relative z-10">
                     <div>
                       <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">Why I use it</h4>
-                      <p className="text-lg text-white/90 leading-relaxed">{currentTech.why}</p>
+                      <p className="text-lg text-[var(--foreground)]/90 leading-relaxed">{currentTech.why}</p>
                     </div>
                     
                     <div>
@@ -126,7 +126,7 @@ export function EngineeringKnowledge() {
 
                     <div>
                       <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">Examples</h4>
-                      <p className="text-white/80">{currentTech.examples}</p>
+                      <p className="text-[var(--foreground)]/80">{currentTech.examples}</p>
                     </div>
 
                     <div className="p-6 rounded-2xl bg-red-500/10 border border-red-500/20">
@@ -136,7 +136,7 @@ export function EngineeringKnowledge() {
 
                     <div>
                       <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">Alternatives Considered</h4>
-                      <p className="text-white/60 text-sm">{currentTech.alternatives}</p>
+                      <p className="text-[var(--foreground)]/60 text-sm">{currentTech.alternatives}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -146,7 +146,7 @@ export function EngineeringKnowledge() {
 
         </div>
       ) : (
-        <div className="glass rounded-3xl p-12 text-center text-white/40 font-mono">
+        <div className="glass rounded-3xl p-12 text-center text-[var(--foreground)]/40 font-mono">
           Knowledge base for this category is currently being compiled...
         </div>
       )}

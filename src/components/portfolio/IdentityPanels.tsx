@@ -58,10 +58,10 @@ export function IdentityPanels() {
               <div className={`p-3 rounded-2xl ${activePanel === panel.id ? 'bg-[var(--electric)] text-black' : 'bg-white/5 text-[var(--electric)]'} transition-colors`}>
                 {panel.icon}
               </div>
-              <h3 className="text-xl font-semibold text-white">{panel.title}</h3>
+              <h3 className="text-xl font-semibold text-[var(--foreground)]">{panel.title}</h3>
             </div>
             
-            <p className="text-sm text-white/50 mb-6">{panel.description}</p>
+            <p className="text-sm text-[var(--foreground)]/50 mb-6">{panel.description}</p>
             
             <AnimatePresence>
               {activePanel === panel.id && (
@@ -75,7 +75,7 @@ export function IdentityPanels() {
                     {panel.values.map((val, idx) => (
                       <div key={idx}>
                         <h4 className="text-sm font-mono text-[var(--cyan)] uppercase tracking-wider mb-2">{val.v}</h4>
-                        <p className="text-sm text-white/70">{val.desc}</p>
+                        <p className="text-sm text-[var(--foreground)]/70">{val.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -84,7 +84,7 @@ export function IdentityPanels() {
             </AnimatePresence>
 
             <div className="mt-6 flex justify-end">
-              <ChevronDown className={`w-4 h-4 text-white/30 transition-transform duration-300 ${activePanel === panel.id ? 'rotate-180 text-[var(--cyan)]' : ''}`} />
+              <ChevronDown className={`w-4 h-4 text-[var(--foreground)]/30 transition-transform duration-300 ${activePanel === panel.id ? 'rotate-180 text-[var(--cyan)]' : ''}`} />
             </div>
           </motion.div>
         ))}

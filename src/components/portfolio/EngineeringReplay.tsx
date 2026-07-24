@@ -73,7 +73,7 @@ export function EngineeringReplay({ project, onClose }: { project: ProjectData, 
                 <s.icon className={`w-3.5 h-3.5 ${stage === s.id ? "opacity-100" : "opacity-60"}`} />
               </div>
               <div className={`absolute top-10 whitespace-nowrap text-[10px] font-bold uppercase tracking-wider transition-colors ${
-                stage === s.id ? "text-white" : "text-zinc-600 group-hover:text-zinc-400"
+                stage === s.id ? "text-[var(--foreground)]" : "text-zinc-600 group-hover:text-zinc-400"
               }`}>
                 {s.title}
               </div>
@@ -83,13 +83,13 @@ export function EngineeringReplay({ project, onClose }: { project: ProjectData, 
 
         {/* Playback Controls */}
         <div className="flex items-center justify-center gap-6 mt-4">
-          <button onClick={() => setStage(Math.max(1, stage - 1))} className="p-3 rounded-full hover:bg-white/10 text-zinc-400 hover:text-white transition-colors">
+          <button onClick={() => setStage(Math.max(1, stage - 1))} className="p-3 rounded-full hover:bg-white/10 text-zinc-400 hover:text-[var(--foreground)] transition-colors">
             <Rewind className="w-5 h-5" />
           </button>
           <button onClick={() => setIsPlaying(!isPlaying)} className="p-4 rounded-full bg-white text-black hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]">
             {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-1" />}
           </button>
-          <button onClick={() => setStage(Math.min(10, stage + 1))} className="p-3 rounded-full hover:bg-white/10 text-zinc-400 hover:text-white transition-colors">
+          <button onClick={() => setStage(Math.min(10, stage + 1))} className="p-3 rounded-full hover:bg-white/10 text-zinc-400 hover:text-[var(--foreground)] transition-colors">
             <FastForward className="w-5 h-5" />
           </button>
         </div>
@@ -225,7 +225,7 @@ function StageRenderer({ stage, project }: { stage: number, project: ProjectData
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {project.metrics.map((m, idx) => (
           <div key={idx} className="p-6 bg-zinc-900 border border-zinc-800 rounded-xl">
-            <div className="text-3xl font-bold text-white mb-2">{m.value}</div>
+            <div className="text-3xl font-bold text-[var(--foreground)] mb-2">{m.value}</div>
             <div className="text-xs uppercase tracking-widest text-zinc-500">{m.label}</div>
           </div>
         ))}

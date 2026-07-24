@@ -8,7 +8,7 @@ export const Route = createFileRoute('/research-vault')({
 
 function ResearchVaultComponent() {
   return (
-    <div className="pt-24 pb-32 bg-[#020202] min-h-screen font-mono text-green-500/80 selection:bg-green-500/30">
+    <div className="pt-24 pb-32 bg-[var(--background)] min-h-screen font-mono text-green-500/80 selection:bg-green-500/30">
       
       {/* Background Grid */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0" 
@@ -23,7 +23,7 @@ function ResearchVaultComponent() {
           
           <div className="flex items-center gap-4 mb-4">
             <ShieldAlert className="w-12 h-12 text-red-800" />
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white uppercase">Research Vault</h1>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-[var(--foreground)] uppercase">Research Vault</h1>
           </div>
           <div className="flex gap-6 text-sm opacity-60">
             <span>CLEARANCE: LEVEL 4</span>
@@ -41,7 +41,7 @@ function ResearchVaultComponent() {
               Document ID: 0x9A4B // Subject: Multi-Tenant Vector Isolation
             </div>
             
-            <h2 className="text-2xl font-bold text-white mb-6 uppercase">I. The Isolation Problem</h2>
+            <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6 uppercase">I. The Isolation Problem</h2>
             
             <div className="space-y-4 text-sm leading-relaxed mb-8">
               <p>
@@ -53,7 +53,7 @@ function ResearchVaultComponent() {
               </p>
             </div>
 
-            <h2 className="text-2xl font-bold text-white mb-6 uppercase mt-12">II. Qdrant Payload Filtering</h2>
+            <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6 uppercase mt-12">II. Qdrant Payload Filtering</h2>
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div>
                 <p className="text-sm leading-relaxed mb-4">
@@ -92,7 +92,7 @@ function ResearchVaultComponent() {
               <span className="text-red-500 font-bold">REDACTED</span>
             </div>
             
-            <h2 className="text-2xl font-bold text-white mb-6 uppercase">I. The Hypothesis</h2>
+            <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6 uppercase">I. The Hypothesis</h2>
             
             <div className="space-y-4 text-sm leading-relaxed mb-8">
               <p>
@@ -100,7 +100,7 @@ function ResearchVaultComponent() {
               </p>
             </div>
 
-            <h2 className="text-2xl font-bold text-white mb-6 uppercase mt-12">II. The Reality</h2>
+            <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6 uppercase mt-12">II. The Reality</h2>
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div>
                 <p className="text-sm leading-relaxed mb-4">

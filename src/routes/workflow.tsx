@@ -50,7 +50,7 @@ function WorkflowComponent() {
       <div className="container mx-auto px-6 max-w-5xl">
         <header className="mb-20 text-center">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">Execution Workflow.</h1>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="text-xl text-[var(--foreground)]/70 max-w-2xl mx-auto">
             From raw domain problem to monitored production system. Predictable software delivery requires a disciplined framework.
           </p>
         </header>
@@ -68,7 +68,7 @@ function WorkflowComponent() {
                   <div className="glass p-8 rounded-3xl border border-[var(--electric)]/30 w-full max-w-sm relative group overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-[var(--electric)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <step.icon className="w-12 h-12 text-[var(--cyan)] mb-4" />
-                    <h3 className="text-2xl font-bold text-white mb-2">{step.title}</h3>
+                    <h3 className="text-2xl font-bold text-[var(--foreground)] mb-2">{step.title}</h3>
                     <p className="text-[var(--electric)] font-mono text-sm">{step.desc}</p>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ function WorkflowComponent() {
                 </div>
 
                 {/* Text Side */}
-                <div className="w-full md:w-1/2 text-white/70 text-lg leading-relaxed px-4 md:px-8">
+                <div className="w-full md:w-1/2 text-[var(--foreground)]/70 text-lg leading-relaxed px-4 md:px-8">
                   {step.details}
                 </div>
                 

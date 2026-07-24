@@ -59,7 +59,7 @@ export function ChessMentorAcademy({
           />
 
           {/* Header Bar */}
-          <div className="sticky top-0 z-50 flex items-center justify-between p-6 border-b border-[#d4af37]/20 bg-[#1c1917]/90 backdrop-blur-md">
+          <div className="sticky top-0 z-50 flex items-center justify-between p-6 border-b border-[#d4af37]/20 bg-[var(--background)]/90 backdrop-blur-md">
             <div className="flex items-center gap-4">
               <div className="flex items-center justify-center w-10 h-10 rounded-full border border-[#d4af37]/40 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
                 <span className="text-xl">♛</span>
@@ -71,11 +71,11 @@ export function ChessMentorAcademy({
             </div>
 
             <div className="flex items-center gap-6">
-              <div className="flex bg-[#292524] rounded-full p-1 border border-[#3f3f46]">
+              <div className="flex bg-[var(--background)] rounded-full p-1 border border-[#3f3f46]">
                 <button 
                   onClick={() => setViewMode("academy")}
                   className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
-                    viewMode === "academy" ? "bg-[#d4af37] text-black shadow-sm" : "text-[#a8a29e] hover:text-[#fafaf9]"
+                    viewMode === "academy" ? "bg-[var(--background)] text-black shadow-sm" : "text-[#a8a29e] hover:text-[#fafaf9]"
                   }`}
                 >
                   Academy
@@ -83,7 +83,7 @@ export function ChessMentorAcademy({
                 <button 
                   onClick={() => setViewMode("engineering")}
                   className={`px-4 py-1.5 rounded-full text-xs font-medium flex items-center gap-2 transition-all ${
-                    viewMode === "engineering" ? "bg-[#d4af37] text-black shadow-sm" : "text-[#a8a29e] hover:text-[#fafaf9]"
+                    viewMode === "engineering" ? "bg-[var(--background)] text-black shadow-sm" : "text-[#a8a29e] hover:text-[#fafaf9]"
                   }`}
                 >
                   <Code2 className="w-3 h-3" /> Architecture
@@ -91,13 +91,13 @@ export function ChessMentorAcademy({
               </div>
 
               <div className="flex items-center gap-4">
-                <button onClick={() => setShowReplay(true)} className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-900/40 text-amber-300 hover:text-white hover:bg-amber-800/60 text-xs font-medium border border-amber-700/50 transition-colors">
+                <button onClick={() => setShowReplay(true)} className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-900/40 text-amber-300 hover:text-[var(--foreground)] hover:bg-amber-800/60 text-xs font-medium border border-amber-700/50 transition-colors">
                   <Rewind className="w-3.5 h-3.5" /> Replay Build
                 </button>
-                <button onClick={() => setShowThinking(true)} className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-700 text-xs font-medium border border-zinc-700 transition-colors">
+                <button onClick={() => setShowThinking(true)} className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-800 text-zinc-300 hover:text-[var(--foreground)] hover:bg-zinc-700 text-xs font-medium border border-zinc-700 transition-colors">
                   <Brain className="w-3.5 h-3.5" /> Thinking Mode
                 </button>
-                <button onClick={onClose} className="p-2 rounded-full hover:bg-white/10 transition-colors text-white/50 hover:text-white">
+                <button onClick={onClose} className="p-2 rounded-full hover:bg-white/10 transition-colors text-[var(--foreground)]/50 hover:text-[var(--foreground)]">
                   <X className="w-5 h-5" />
                 </button>
               </div>
@@ -150,8 +150,8 @@ function AcademyView({ analysisActive, setAnalysisActive, evalScore }: { analysi
             Understanding the tension in the center. Notice how white's pawn structure restricts black's knight development.
           </p>
           <div className="flex gap-2 text-xs font-medium">
-            <span className="px-2 py-1 rounded bg-[#292524] text-[#a8a29e] border border-[#3f3f46]">Positional</span>
-            <span className="px-2 py-1 rounded bg-[#292524] text-[#a8a29e] border border-[#3f3f46]">Advanced</span>
+            <span className="px-2 py-1 rounded bg-[var(--background)] text-[#a8a29e] border border-[#3f3f46]">Positional</span>
+            <span className="px-2 py-1 rounded bg-[var(--background)] text-[#a8a29e] border border-[#3f3f46]">Advanced</span>
           </div>
         </div>
 
@@ -182,14 +182,14 @@ function AcademyView({ analysisActive, setAnalysisActive, evalScore }: { analysi
       <div className="lg:col-span-5 flex flex-col items-center">
         
         {/* Evaluation Bar */}
-        <div className="w-full max-w-[480px] h-2 bg-[#292524] rounded-t-lg overflow-hidden flex relative border-b border-[#3f3f46]">
+        <div className="w-full max-w-[480px] h-2 bg-[var(--background)] rounded-t-lg overflow-hidden flex relative border-b border-[#3f3f46]">
           {/* White advantage fills from left */}
           <motion.div 
             className="h-full bg-white transition-all duration-300"
             style={{ width: `${50 + (evalScore * 5)}%` }} // Very rough visual mapping
           />
           <div className="h-full bg-black flex-1" />
-          <div className="absolute inset-0 flex items-center justify-center text-[8px] font-mono font-bold mix-blend-difference text-white">
+          <div className="absolute inset-0 flex items-center justify-center text-[8px] font-mono font-bold mix-blend-difference text-[var(--foreground)]">
             {evalScore > 0 ? '+' : ''}{evalScore.toFixed(1)}
           </div>
         </div>
@@ -199,7 +199,7 @@ function AcademyView({ analysisActive, setAnalysisActive, evalScore }: { analysi
           {squares.map((sq) => (
             <div 
               key={sq.id} 
-              className={`w-full h-full relative ${sq.isLight ? 'bg-[#e7e5e4]' : 'bg-[#78716c]'}`}
+              className={`w-full h-full relative ${sq.isLight ? 'bg-[var(--background)]' : 'bg-[var(--background)]'}`}
             >
               {/* Simulate Heatmap if analysis is active */}
               {analysisActive && (
@@ -233,24 +233,24 @@ function AcademyView({ analysisActive, setAnalysisActive, evalScore }: { analysi
         </div>
 
         {/* Board Controls */}
-        <div className="w-full max-w-[480px] flex justify-between items-center mt-4 bg-[#292524] p-3 rounded-lg border border-[#3f3f46]">
+        <div className="w-full max-w-[480px] flex justify-between items-center mt-4 bg-[var(--background)] p-3 rounded-lg border border-[#3f3f46]">
           <div className="flex gap-4 text-[#a8a29e]">
-            <button className="hover:text-white transition-colors"><Rewind className="w-4 h-4" /></button>
-            <button className="hover:text-white transition-colors"><Play className="w-4 h-4" /></button>
-            <button className="hover:text-white transition-colors"><FastForward className="w-4 h-4" /></button>
+            <button className="hover:text-[var(--foreground)] transition-colors"><Rewind className="w-4 h-4" /></button>
+            <button className="hover:text-[var(--foreground)] transition-colors"><Play className="w-4 h-4" /></button>
+            <button className="hover:text-[var(--foreground)] transition-colors"><FastForward className="w-4 h-4" /></button>
           </div>
-          <button className="text-[#a8a29e] hover:text-white transition-colors"><Maximize className="w-4 h-4" /></button>
+          <button className="text-[#a8a29e] hover:text-[var(--foreground)] transition-colors"><Maximize className="w-4 h-4" /></button>
         </div>
       </div>
 
       {/* Right Sidebar: AI Analysis */}
       <div className="lg:col-span-4 space-y-6">
         <div className="flex justify-between items-center border-b border-[#3f3f46] pb-4">
-          <h2 className="font-serif text-2xl text-white">Coach Insight</h2>
+          <h2 className="font-serif text-2xl text-[var(--foreground)]">Coach Insight</h2>
           <button 
             onClick={() => setAnalysisActive(!analysisActive)}
             className={`px-4 py-2 rounded font-sans text-xs uppercase tracking-wider flex items-center gap-2 transition-colors ${
-              analysisActive ? "bg-red-500/10 text-red-400 border border-red-500/20" : "bg-[#d4af37]/10 text-[#d4af37] border border-[#d4af37]/30 hover:bg-[#d4af37]/20"
+              analysisActive ? "bg-red-500/10 text-red-400 border border-red-500/20" : "bg-[var(--background)]/10 text-[#d4af37] border border-[#d4af37]/30 hover:bg-[var(--background)]/20"
             }`}
           >
             <BrainCircuit className="w-4 h-4" />
@@ -259,7 +259,7 @@ function AcademyView({ analysisActive, setAnalysisActive, evalScore }: { analysi
         </div>
 
         {/* Thinking Visualizer */}
-        <div className="bg-[#292524] rounded-xl p-6 border border-[#3f3f46] relative overflow-hidden min-h-[300px]">
+        <div className="bg-[var(--background)] rounded-xl p-6 border border-[#3f3f46] relative overflow-hidden min-h-[300px]">
           {!analysisActive ? (
             <div className="absolute inset-0 flex items-center justify-center text-[#78716c] font-light text-sm italic">
               Awaiting position analysis...
@@ -271,14 +271,14 @@ function AcademyView({ analysisActive, setAnalysisActive, evalScore }: { analysi
               className="space-y-6"
             >
               <div className="flex items-center gap-2 text-[#d4af37] font-sans text-xs uppercase tracking-widest mb-4">
-                <span className="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse" /> Evaluating Candidate Moves
+                <span className="w-2 h-2 rounded-full bg-[var(--background)] animate-pulse" /> Evaluating Candidate Moves
               </div>
 
               {/* Thinking Tree Nodes */}
               <div className="pl-4 border-l border-[#3f3f46] space-y-4">
                 <div className="relative">
-                  <div className="absolute -left-[21px] top-2 w-3 h-3 rounded-full bg-[#d4af37] border-2 border-[#292524]" />
-                  <div className="text-white font-medium mb-1">Ne4 (Best Move)</div>
+                  <div className="absolute -left-[21px] top-2 w-3 h-3 rounded-full bg-[var(--background)] border-2 border-[#292524]" />
+                  <div className="text-[var(--foreground)] font-medium mb-1">Ne4 (Best Move)</div>
                   <div className="text-sm text-[#a8a29e] font-light leading-relaxed">
                     Controls the center and prepares an attack on f7. Black is forced to respond passively.
                   </div>
@@ -286,8 +286,8 @@ function AcademyView({ analysisActive, setAnalysisActive, evalScore }: { analysi
                 </div>
 
                 <div className="relative opacity-60">
-                  <div className="absolute -left-[21px] top-2 w-3 h-3 rounded-full bg-[#78716c] border-2 border-[#292524]" />
-                  <div className="text-white font-medium mb-1">Bc4</div>
+                  <div className="absolute -left-[21px] top-2 w-3 h-3 rounded-full bg-[var(--background)] border-2 border-[#292524]" />
+                  <div className="text-[var(--foreground)] font-medium mb-1">Bc4</div>
                   <div className="text-sm text-[#a8a29e] font-light leading-relaxed">
                     Solid development, but allows black to equalize with ...d5.
                   </div>
@@ -325,8 +325,8 @@ function EngineeringView() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-[#292524] p-8 rounded-2xl border border-[#3f3f46]">
-          <h3 className="text-lg text-white font-medium mb-4 flex items-center gap-2">
+        <div className="bg-[var(--background)] p-8 rounded-2xl border border-[#3f3f46]">
+          <h3 className="text-lg text-[var(--foreground)] font-medium mb-4 flex items-center gap-2">
             <Server className="w-4 h-4 text-[#d4af37]" /> The Engine Pipeline
           </h3>
           <p className="text-[#d6d3d1] font-light text-sm leading-relaxed mb-6">
@@ -340,8 +340,8 @@ function EngineeringView() {
           </ul>
         </div>
 
-        <div className="bg-[#292524] p-8 rounded-2xl border border-[#3f3f46]">
-          <h3 className="text-lg text-white font-medium mb-4 flex items-center gap-2">
+        <div className="bg-[var(--background)] p-8 rounded-2xl border border-[#3f3f46]">
+          <h3 className="text-lg text-[var(--foreground)] font-medium mb-4 flex items-center gap-2">
             <BrainCircuit className="w-4 h-4 text-[#d4af37]" /> The Pedagogical LLM
           </h3>
           <p className="text-[#d6d3d1] font-light text-sm leading-relaxed mb-6">
@@ -366,11 +366,11 @@ function EngineeringView() {
         <h3 className="text-lg text-[#d4af37] font-medium mb-4">Core Engineering Decisions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-[#d6d3d1] font-light">
           <div>
-            <strong className="text-white block mb-1">State Management</strong>
+            <strong className="text-[var(--foreground)] block mb-1">State Management</strong>
             React state is notoriously slow for 60fps animations. Board state is entirely decoupled from React's render cycle using custom stores and CSS transforms to handle drag-and-drop physics smoothly.
           </div>
           <div>
-            <strong className="text-white block mb-1">Debounced Analysis</strong>
+            <strong className="text-[var(--foreground)] block mb-1">Debounced Analysis</strong>
             Running Stockfish and an LLM simultaneously for every rapid move causes thermal throttling and API limits. Analysis requests are heavily debounced and batched during fast-paced play.
           </div>
         </div>

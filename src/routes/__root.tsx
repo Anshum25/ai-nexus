@@ -15,10 +15,10 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { BootLoader } from "@/components/portfolio/BootLoader";
 import { CursorEngine } from "@/components/portfolio/CursorEngine";
-import { Nav } from "@/components/portfolio/Nav";
+import { FloatingNav } from "@/components/portfolio/FloatingNav";
 import { CommandPalette } from "@/components/portfolio/CommandPalette";
 import { NexusAIGuide } from "@/components/portfolio/NexusAIGuide";
-import { EnvironmentEngine } from "@/components/portfolio/EnvironmentEngine";
+import { ArchitecturalEnvironment } from "@/components/portfolio/ArchitecturalEnvironment";
 
 function NotFoundComponent() {
   return (
@@ -120,29 +120,24 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const [booted, setBooted] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
   
-  useEffect(() => {
-    // ensure dark theme
-    document.documentElement.classList.add("dark");
-  }, []);
-
   const handleBootDone = () => {
     setBooted(true);
     setShowWelcome(true);
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div id="top" className="relative min-h-screen bg-background text-foreground grain overflow-clip selection:bg-[var(--electric)] selection:text-white">
-        {/* LAYER 2: Invisible Intelligence (Background Engine) */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="aurora opacity-70" />
-          <div className="grid-bg opacity-40" />
-        </div>
+    <ThemeProvider defaultTheme="dark" storageKey="nexus-theme">
+      <QueryClientProvider client={queryClient}>
+        <div id="top" className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] overflow-clip selection:bg-[var(--accent)] selection:text-[var(--foreground)]">
+        {/* Editorial Background Engine */}
+        <ArchitecturalEnvironment />
 
         {/* Boot Sequence Overlay */}
         {!booted && <BootLoader onDone={handleBootDone} />}
@@ -152,30 +147,28 @@ function RootComponent() {
           {showWelcome && <WelcomeModal onDismiss={() => setShowWelcome(false)} />}
         </AnimatePresence>
 
-        {/* Global Ambient Layer */}
-        <EnvironmentEngine />
-
         {/* Global Interface Elements */}
         <CursorEngine />
         <CommandPalette />
         <NexusAIGuide />
         
         {/* Only show Nav after boot */}
-        {booted && <Nav />}
+        {booted && <FloatingNav />}
 
-        <main className={`relative z-10 transition-opacity duration-1000 lg:pl-72 ${booted ? "opacity-100" : "opacity-0"}`}>
+        <main className={`relative z-10 transition-opacity duration-1000 w-full ${booted ? "opacity-100" : "opacity-0"}`}>
           <Outlet />
           {booted && (
-            <footer className="border-t border-white/5 py-12 text-center font-mono text-xs text-muted-foreground flex flex-col items-center justify-center gap-4 mt-20">
+            <footer className="border-t border-[var(--border)] py-12 text-center font-mono text-xs text-[var(--muted-foreground)] flex flex-col items-center justify-center gap-4 mt-20">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[var(--electric)] animate-pulse" />
-                NEXUS OS v2.0 Online
+                <div className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+                SYSTEM ONLINE
               </div>
-              <div>© {new Date().getFullYear()} · engineered from scratch · press ⌘K</div>
+              <div>© {new Date().getFullYear()} NEXUS Engineering</div>
             </footer>
           )}
         </main>
       </div>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }

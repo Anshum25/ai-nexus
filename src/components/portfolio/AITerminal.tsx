@@ -54,7 +54,7 @@ function Typewriter({ text }: { text: string }) {
     return () => clearInterval(interval);
   }, [text]);
 
-  return <pre className="whitespace-pre-wrap font-mono text-white/70" dangerouslySetInnerHTML={{ __html: displayed }} />;
+  return <pre className="whitespace-pre-wrap font-mono text-[var(--foreground)]/70" dangerouslySetInnerHTML={{ __html: displayed }} />;
 }
 
 export function AITerminal() {
@@ -120,7 +120,7 @@ export function AITerminal() {
             <span className="h-3 w-3 rounded-full bg-yellow-500/80 shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
             <span className="h-3 w-3 rounded-full bg-green-500/80 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
           </div>
-          <span className="font-mono text-xs text-white/40 uppercase tracking-widest">guest@nexus-os:~</span>
+          <span className="font-mono text-xs text-[var(--foreground)]/40 uppercase tracking-widest">guest@nexus-os:~</span>
           <div className="w-16" /> {/* spacer */}
         </div>
 
@@ -129,7 +129,7 @@ export function AITerminal() {
           {lines.map((l) => (
             <div key={l.id} className="mb-2">
               {l.kind === "in" ? (
-                <div className="flex items-center gap-2 text-white">
+                <div className="flex items-center gap-2 text-[var(--foreground)]">
                   <span className="text-[var(--electric)] font-bold text-base">➜</span>
                   <span className="text-[var(--cyan)] font-bold">~</span>
                   <span>{l.text}</span>
@@ -148,7 +148,7 @@ export function AITerminal() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent text-white outline-none placeholder:text-white/20"
+              className="flex-1 bg-transparent text-[var(--foreground)] outline-none placeholder:text-[var(--foreground)]/20"
               placeholder="awaiting input..."
               spellCheck={false}
             />

@@ -85,7 +85,7 @@ export function SkyCloudEcosystem({
                 <button 
                   onClick={() => setViewMode("engineering")}
                   className={`px-3 py-1.5 md:px-4 rounded-full text-[10px] md:text-xs font-medium flex items-center gap-2 transition-all ${
-                    viewMode === "engineering" ? "bg-zinc-900 text-white shadow-sm" : "text-zinc-500 hover:text-zinc-700"
+                    viewMode === "engineering" ? "bg-zinc-900 text-[var(--foreground)] shadow-sm" : "text-zinc-500 hover:text-zinc-700"
                   }`}
                 >
                   <Terminal className="w-3 h-3 hidden md:block" /> Engineering
@@ -165,7 +165,7 @@ function ProductView({ responsiveSize }: { responsiveSize: ResponsiveState }) {
             </div>
             <h4 className="text-base font-semibold text-zinc-900 mb-2">Workspace Creation</h4>
             <p className="text-sm text-zinc-500 mb-6">Initialize a new tenant environment with isolated databases and pre-configured permissions.</p>
-            <button className="w-full py-2.5 rounded-lg bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 focus:ring-4 focus:ring-zinc-100 transition-all flex justify-center items-center gap-2 group-hover:gap-3">
+            <button className="w-full py-2.5 rounded-lg bg-zinc-900 text-[var(--foreground)] text-sm font-medium hover:bg-zinc-800 focus:ring-4 focus:ring-zinc-100 transition-all flex justify-center items-center gap-2 group-hover:gap-3">
               Deploy Workspace <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -205,7 +205,7 @@ function ProductView({ responsiveSize }: { responsiveSize: ResponsiveState }) {
           <ArrowRight className="text-zinc-300 w-5 h-5 rotate-90 md:rotate-0" />
           <div className="w-full md:w-32 py-4 px-2 rounded-xl bg-blue-50 border border-blue-100 shadow-sm text-center text-sm font-medium text-blue-700 ring-1 ring-blue-500/10">Authentication</div>
           <ArrowRight className="text-zinc-300 w-5 h-5 rotate-90 md:rotate-0" />
-          <div className="w-full md:w-32 py-4 px-2 rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg text-center text-sm font-medium text-white ring-1 ring-black/5">Dashboard</div>
+          <div className="w-full md:w-32 py-4 px-2 rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg text-center text-sm font-medium text-[var(--foreground)] ring-1 ring-black/5">Dashboard</div>
         </div>
       </div>
 
@@ -258,7 +258,7 @@ function EngineeringView() {
           </div>
 
           {/* RIGHT: "Implementation" Code */}
-          <div className="p-8 lg:p-12 bg-[#0d1117] text-zinc-300 font-mono text-[13px] leading-relaxed overflow-x-auto relative">
+          <div className="p-8 lg:p-12 bg-[var(--background)] text-zinc-300 font-mono text-[13px] leading-relaxed overflow-x-auto relative">
             <div className="absolute top-4 left-4 text-xs font-mono text-zinc-500">React + Tailwind UI</div>
             <pre className="mt-6">
 <span className="text-pink-400">export function</span> <span className="text-yellow-200">ProfileCard</span>() {'{\n'}
@@ -272,7 +272,7 @@ function EngineeringView() {
       &lt;<span className="text-blue-300">p</span> <span className="text-purple-300">className</span>=<span className="text-green-300">"text-sm text-zinc-500 mb-6"</span>&gt;
         Admin
       &lt;/<span className="text-blue-300">p</span>&gt;
-      &lt;<span className="text-blue-300">Button</span> <span className="text-purple-300">className</span>=<span className="text-green-300">"w-full bg-zinc-900 text-white"</span>&gt;
+      &lt;<span className="text-blue-300">Button</span> <span className="text-purple-300">className</span>=<span className="text-green-300">"w-full bg-zinc-900 text-[var(--foreground)]"</span>&gt;
         Manage Profile
       &lt;/<span className="text-blue-300">Button</span>&gt;
     &lt;/<span className="text-blue-300">div</span>&gt;

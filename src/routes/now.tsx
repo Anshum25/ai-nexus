@@ -28,25 +28,25 @@ function SystemTelemetryComponent() {
   };
 
   return (
-    <div className="pt-24 pb-32 bg-[#050505] min-h-screen font-mono">
+    <div className="pt-24 pb-32 bg-[var(--background)] min-h-screen font-mono">
       <div className="container mx-auto px-6 max-w-7xl">
         <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-white flex items-center gap-4">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-[var(--foreground)] flex items-center gap-4">
               <Activity className="w-8 h-8 text-[var(--electric)]" />
               System Telemetry
             </h1>
-            <p className="text-white/40 text-sm uppercase tracking-widest">
+            <p className="text-[var(--foreground)]/40 text-sm uppercase tracking-widest">
               Real-time engineering dashboard & current focus matrix
             </p>
           </div>
           <div className="flex items-center gap-6 text-sm">
             <div className="flex flex-col items-end">
-              <span className="text-white/30 uppercase text-[10px]">Session Uptime</span>
+              <span className="text-[var(--foreground)]/30 uppercase text-[10px]">Session Uptime</span>
               <span className="text-[var(--cyan)] text-lg">{formatUptime(uptime)}</span>
             </div>
             <div className="flex flex-col items-end">
-              <span className="text-white/30 uppercase text-[10px]">Status</span>
+              <span className="text-[var(--foreground)]/30 uppercase text-[10px]">Status</span>
               <div className="flex items-center gap-2 text-green-400">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" /> OPERATIONAL
               </div>
@@ -60,29 +60,29 @@ function SystemTelemetryComponent() {
           <div className="md:col-span-8 glass p-6 rounded-2xl border border-white/10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--electric)] to-[var(--cyan)] opacity-50" />
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-white/50 text-xs uppercase tracking-widest flex items-center gap-2">
+              <h2 className="text-[var(--foreground)]/50 text-xs uppercase tracking-widest flex items-center gap-2">
                 <Network className="w-4 h-4" /> Primary Execution Thread
               </h2>
               <div className="px-2 py-1 bg-[var(--electric)]/20 text-[var(--cyan)] text-[10px] rounded border border-[var(--electric)]/30">PRIORITY_0</div>
             </div>
             
-            <h3 className="text-3xl font-bold text-white mb-4">Multi-Tenant RAG Pipeline</h3>
-            <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-2xl font-sans">
+            <h3 className="text-3xl font-bold text-[var(--foreground)] mb-4">Multi-Tenant RAG Pipeline</h3>
+            <p className="text-[var(--foreground)]/70 text-lg leading-relaxed mb-8 max-w-2xl font-sans">
               Currently engineering a high-throughput Retrieval-Augmented Generation system. Focusing on implementing strict exact-match payload filters in Qdrant to guarantee tenant data isolation before passing context to the LLM.
             </p>
             
             <div className="grid grid-cols-3 gap-4 border-t border-white/5 pt-6">
               <div>
-                <div className="text-white/30 text-[10px] uppercase mb-1">Stack</div>
-                <div className="text-white/70 text-sm">FastAPI, Qdrant, OpenAI</div>
+                <div className="text-[var(--foreground)]/30 text-[10px] uppercase mb-1">Stack</div>
+                <div className="text-[var(--foreground)]/70 text-sm">FastAPI, Qdrant, OpenAI</div>
               </div>
               <div>
-                <div className="text-white/30 text-[10px] uppercase mb-1">Status</div>
+                <div className="text-[var(--foreground)]/30 text-[10px] uppercase mb-1">Status</div>
                 <div className="text-yellow-400 text-sm">Testing Semantic Cache</div>
               </div>
               <div>
-                <div className="text-white/30 text-[10px] uppercase mb-1">ETA</div>
-                <div className="text-white/70 text-sm">Sprint 42</div>
+                <div className="text-[var(--foreground)]/30 text-[10px] uppercase mb-1">ETA</div>
+                <div className="text-[var(--foreground)]/70 text-sm">Sprint 42</div>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ function SystemTelemetryComponent() {
           {/* System Load / Charts */}
           <div className="md:col-span-4 space-y-6 flex flex-col">
             <div className="glass flex-1 p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-              <h2 className="text-white/50 text-xs uppercase tracking-widest flex items-center gap-2 mb-4">
+              <h2 className="text-[var(--foreground)]/50 text-xs uppercase tracking-widest flex items-center gap-2 mb-4">
                 <Cpu className="w-4 h-4" /> Cognitive Load
               </h2>
               <div className="flex items-end gap-2 h-24 mt-auto">
@@ -105,27 +105,27 @@ function SystemTelemetryComponent() {
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between text-[10px] text-white/30 mt-2">
+              <div className="flex justify-between text-[10px] text-[var(--foreground)]/30 mt-2">
                 <span>T-7 DAYS</span>
                 <span>NOW</span>
               </div>
             </div>
 
             <div className="glass p-6 rounded-2xl border border-white/10">
-              <h2 className="text-white/50 text-xs uppercase tracking-widest flex items-center gap-2 mb-4">
+              <h2 className="text-[var(--foreground)]/50 text-xs uppercase tracking-widest flex items-center gap-2 mb-4">
                 <HardDrive className="w-4 h-4" /> Deep Work Blocks
               </h2>
               <div className="flex items-center justify-between">
-                <span className="text-4xl font-bold text-white">4.5<span className="text-lg text-white/40">hrs</span></span>
+                <span className="text-4xl font-bold text-[var(--foreground)]">4.5<span className="text-lg text-[var(--foreground)]/40">hrs</span></span>
                 <TrendingUp className="w-8 h-8 text-green-400 opacity-50" />
               </div>
-              <div className="text-[10px] text-white/40 mt-2">Today's total uninterrupted focus time</div>
+              <div className="text-[10px] text-[var(--foreground)]/40 mt-2">Today's total uninterrupted focus time</div>
             </div>
           </div>
 
           {/* Activity Stream */}
           <div className="md:col-span-12 glass p-6 rounded-2xl border border-white/10 mt-6">
-            <h2 className="text-white/50 text-xs uppercase tracking-widest flex items-center gap-2 mb-6">
+            <h2 className="text-[var(--foreground)]/50 text-xs uppercase tracking-widest flex items-center gap-2 mb-6">
               <Clock className="w-4 h-4" /> Sub-Processes & Queue
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -133,16 +133,16 @@ function SystemTelemetryComponent() {
                 <div className="text-[var(--cyan)] text-xs mb-3 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-[var(--cyan)] rounded-full animate-pulse" /> IN PROGRESS
                 </div>
-                <ul className="space-y-3 text-sm text-white/70">
+                <ul className="space-y-3 text-sm text-[var(--foreground)]/70">
                   <li>Building robust eval framework for the RAG output.</li>
                   <li>Migrating staging DB to Postgres 16.</li>
                 </ul>
               </div>
               <div>
-                <div className="text-white/40 text-xs mb-3 flex items-center gap-2">
+                <div className="text-[var(--foreground)]/40 text-xs mb-3 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-white/20 rounded-full" /> QUEUED
                 </div>
-                <ul className="space-y-3 text-sm text-white/50">
+                <ul className="space-y-3 text-sm text-[var(--foreground)]/50">
                   <li>Experiment with Llama 3 8B locally via Ollama.</li>
                   <li>Write RFC for event-driven webhook architecture.</li>
                 </ul>
@@ -151,7 +151,7 @@ function SystemTelemetryComponent() {
                 <div className="text-green-400 text-xs mb-3 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 bg-green-400 rounded-full" /> RECENTLY COMPLETED
                 </div>
-                <ul className="space-y-3 text-sm text-white/70 line-through opacity-50">
+                <ul className="space-y-3 text-sm text-[var(--foreground)]/70 line-through opacity-50">
                   <li>Decouple auth service from monolith.</li>
                   <li>Implement rate limiting on public API.</li>
                 </ul>

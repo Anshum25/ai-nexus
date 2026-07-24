@@ -263,11 +263,11 @@ export function Projects() {
                         >
                           {/* Hover Summary Tooltip */}
                           <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none w-48 text-center bg-black/80 backdrop-blur-md border border-white/10 p-3 rounded-xl scale-75 group-hover:scale-100 origin-top">
-                            <div className="text-[10px] font-mono uppercase text-white/50 tracking-widest mb-1">{project.status}</div>
-                            <div className="text-sm font-semibold text-white leading-tight mb-2">{project.name}</div>
+                            <div className="text-[10px] font-mono uppercase text-[var(--foreground)]/50 tracking-widest mb-1">{project.status}</div>
+                            <div className="text-sm font-semibold text-[var(--foreground)] leading-tight mb-2">{project.name}</div>
                             <div className="flex flex-wrap gap-1 justify-center">
                               {project.technologies.slice(0, 2).map(t => (
-                                <span key={t} className="text-[8px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-white/70">{t}</span>
+                                <span key={t} className="text-[8px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-[var(--foreground)]/70">{t}</span>
                               ))}
                             </div>
                           </div>

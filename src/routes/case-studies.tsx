@@ -83,7 +83,7 @@ function CaseStudiesComponent() {
             {CASE_STUDY.title}
           </h1>
           
-          <div className="flex flex-wrap items-center gap-4 text-sm font-mono text-white/50 bg-white/5 p-4 rounded-xl border border-white/10">
+          <div className="flex flex-wrap items-center gap-4 text-sm font-mono text-[var(--foreground)]/50 bg-white/5 p-4 rounded-xl border border-white/10">
             <div className="flex items-center gap-2"><Activity className="w-4 h-4" /> {CASE_STUDY.readingTime}</div>
             <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> {CASE_STUDY.difficulty}</div>
             <div className="flex items-center gap-2">
@@ -97,17 +97,17 @@ function CaseStudiesComponent() {
         <article className="prose prose-invert max-w-none prose-p:leading-relaxed prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:border-b prose-h2:border-white/10 prose-h2:pb-4">
           
           <h2>Executive Summary</h2>
-          <p className="text-xl font-light text-white/90">{CASE_STUDY.executiveSummary}</p>
+          <p className="text-xl font-light text-[var(--foreground)]/90">{CASE_STUDY.executiveSummary}</p>
 
           <h2>Business Problem</h2>
           <div className="p-6 border-l-2 border-red-500 bg-red-500/5 rounded-r-xl">
-            <p className="m-0 text-white/80">{CASE_STUDY.businessProblem}</p>
+            <p className="m-0 text-[var(--foreground)]/80">{CASE_STUDY.businessProblem}</p>
           </div>
 
           <h2>Requirements</h2>
           <ul className="space-y-3">
             {CASE_STUDY.requirements.map(req => (
-              <li key={req} className="flex items-center gap-3 text-white/80">
+              <li key={req} className="flex items-center gap-3 text-[var(--foreground)]/80">
                 <CheckCircle2 className="w-5 h-5 text-green-500" /> {req}
               </li>
             ))}
@@ -129,11 +129,11 @@ function CaseStudiesComponent() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
             <div className="glass p-6 rounded-xl border border-orange-500/30">
               <h4 className="flex items-center gap-2 text-orange-400 font-bold mb-2"><AlertTriangle className="w-4 h-4" /> Memory Overhead</h4>
-              <p className="text-sm text-white/70 m-0">Storing complex permission metadata inside the vector payload increased memory usage by 15%. We mitigated this by converting string IDs to optimized integer mappings.</p>
+              <p className="text-sm text-[var(--foreground)]/70 m-0">Storing complex permission metadata inside the vector payload increased memory usage by 15%. We mitigated this by converting string IDs to optimized integer mappings.</p>
             </div>
             <div className="glass p-6 rounded-xl border border-blue-500/30">
               <h4 className="flex items-center gap-2 text-blue-400 font-bold mb-2"><Server className="w-4 h-4" /> Sync Latency</h4>
-              <p className="text-sm text-white/70 m-0">Keeping ERP permissions in sync with Vector metadata required an asynchronous event bus to prevent blocking the main thread during heavy writes.</p>
+              <p className="text-sm text-[var(--foreground)]/70 m-0">Keeping ERP permissions in sync with Vector metadata required an asynchronous event bus to prevent blocking the main thread during heavy writes.</p>
             </div>
           </div>
 

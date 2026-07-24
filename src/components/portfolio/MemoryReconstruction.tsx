@@ -34,7 +34,7 @@ export function MemoryReconstruction({
               onClick={onClose}
               className="absolute top-6 right-6 z-50 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
             >
-              <X className="w-5 h-5 text-white/70" />
+              <X className="w-5 h-5 text-[var(--foreground)]/70" />
             </button>
 
             {/* Left Sidebar - Meta */}
@@ -45,8 +45,8 @@ export function MemoryReconstruction({
                 transition={{ delay: 0.3 }}
               >
                 <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--cyan)] mb-4">{memory.year}</div>
-                <h2 className="text-3xl font-semibold text-white tracking-tight mb-2">{memory.title}</h2>
-                <div className="text-white/50 text-sm mb-8">{memory.subtitle}</div>
+                <h2 className="text-3xl font-semibold text-[var(--foreground)] tracking-tight mb-2">{memory.title}</h2>
+                <div className="text-[var(--foreground)]/50 text-sm mb-8">{memory.subtitle}</div>
                 
                 {renderSidebarContent(memory.type)}
               </motion.div>
@@ -74,7 +74,7 @@ export function MemoryReconstruction({
 function renderSidebarContent(type: string) {
   if (type === "Enterprise AI") {
     return (
-      <div className="space-y-4 font-mono text-xs text-white/60">
+      <div className="space-y-4 font-mono text-xs text-[var(--foreground)]/60">
         <div className="flex items-center gap-2"><Terminal className="w-3 h-3 text-[var(--electric)]"/> Stack: FastAPI, Qdrant</div>
         <div className="flex items-center gap-2"><Database className="w-3 h-3 text-[var(--cyan)]"/> Vectors: 1M+ embeddings</div>
         <div className="flex items-center gap-2"><GitMerge className="w-3 h-3 text-[var(--electric)]"/> Deployment: Docker Swarm</div>
@@ -82,7 +82,7 @@ function renderSidebarContent(type: string) {
     );
   }
   return (
-    <div className="space-y-4 font-mono text-xs text-white/40">
+    <div className="space-y-4 font-mono text-xs text-[var(--foreground)]/40">
       <p>System metrics initializing...</p>
       <div className="h-[1px] w-full bg-white/10" />
       <p>Extracting architectural memory...</p>
@@ -137,7 +137,7 @@ function renderEnvironment(type: string) {
   // Default empty state for other environments
   return (
     <div className="w-full h-full border border-white/5 rounded-2xl bg-black/20 flex items-center justify-center">
-      <div className="text-white/20 font-mono text-sm tracking-widest uppercase">
+      <div className="text-[var(--foreground)]/20 font-mono text-sm tracking-widest uppercase">
         Memory Constructing...
       </div>
     </div>

@@ -66,8 +66,8 @@ export function Timeline() {
 
                   <div className="relative z-10">
                     <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--cyan)]">{node.year}</div>
-                    <div className="mt-2 text-lg font-semibold text-white group-hover:text-[var(--cyan)] transition-colors">{node.title}</div>
-                    <div className="mt-2 text-sm text-white/50">{node.type}</div>
+                    <div className="mt-2 text-lg font-semibold text-[var(--foreground)] group-hover:text-[var(--cyan)] transition-colors">{node.title}</div>
+                    <div className="mt-2 text-sm text-[var(--foreground)]/50">{node.type}</div>
                   </div>
                 </motion.button>
               </motion.div>
@@ -98,8 +98,8 @@ export function SectionHeading({ eyebrow, title, subtitle }: { eyebrow: string; 
       <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--cyan)]">
         {eyebrow}
       </div>
-      <h2 className="text-balance mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">{title}</h2>
-      {subtitle && <p className="mt-4 max-w-md text-white/50 font-light text-sm">{subtitle}</p>}
+      <h2 className="text-balance mt-6 text-4xl font-semibold tracking-tight text-[var(--foreground)] sm:text-5xl">{title}</h2>
+      {subtitle && <p className="mt-4 max-w-md text-[var(--foreground)]/50 font-light text-sm">{subtitle}</p>}
     </div>
   );
 }

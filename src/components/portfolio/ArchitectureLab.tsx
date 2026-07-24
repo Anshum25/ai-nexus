@@ -48,7 +48,7 @@ function LabOverlay({ onClose }: { onClose: () => void }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 1.05 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-0 z-[200] flex flex-col bg-[#f8fafc] text-slate-900 overflow-hidden"
+      className="fixed inset-0 z-[200] flex flex-col bg-[var(--background)] text-slate-900 overflow-hidden"
     >
       {/* Blueprint Grid Background */}
       <div 
@@ -115,7 +115,7 @@ function TabButton({ active, onClick, icon, label }: { active: boolean, onClick:
       onClick={onClick}
       className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all text-left ${
         active 
-          ? "bg-blue-600 text-white shadow-md" 
+          ? "bg-blue-600 text-[var(--foreground)] shadow-md" 
           : "text-slate-600 hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-200"
       }`}
     >
@@ -173,7 +173,7 @@ function SystemArchitectureLab() {
           />
           <button 
             onClick={() => !isSimulating && setIsSimulating(true)}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-blue-700 transition-colors"
+            className="bg-blue-600 text-[var(--foreground)] px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-blue-700 transition-colors"
           >
             <Play className="w-4 h-4" /> Execute Request
           </button>
@@ -389,7 +389,7 @@ function AIEngineeringLab() {
           
           <div className="col-span-8 bg-slate-900 rounded-xl p-6 font-mono text-xs leading-relaxed text-slate-300 shadow-inner">
             <span className="text-slate-500"># The Final Compiled Prompt sent to LLM</span><br/><br/>
-            <span className="text-white">You are a corporate assistant.</span><br/><br/>
+            <span className="text-[var(--foreground)]">You are a corporate assistant.</span><br/><br/>
             <span className="text-blue-400">The user has role: "HR Manager". They may view salary bands but not individual compensation.</span><br/><br/>
             <span className="text-purple-400">Context: [Document 1: Policy 2024], [Document 2: Band Structure]</span><br/><br/>
             <span className="text-green-400">Query: "What is the ceiling for L4 engineers?"</span><br/><br/>

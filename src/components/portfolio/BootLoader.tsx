@@ -85,7 +85,7 @@ export function BootLoader({ onDone }: { onDone: () => void }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleSkip}
-          className="absolute bottom-10 right-10 z-50 font-mono text-xs text-white/30 hover:text-white/70 transition-colors uppercase tracking-widest"
+          className="absolute bottom-10 right-10 z-50 font-mono text-xs text-[var(--foreground)]/30 hover:text-[var(--foreground)]/70 transition-colors uppercase tracking-widest"
         >
           Skip Intro [esc]
         </motion.button>
@@ -130,7 +130,7 @@ export function BootLoader({ onDone }: { onDone: () => void }) {
             transition={{ duration: 1 }}
             className="absolute flex flex-col items-center text-center"
           >
-            <h1 className="text-white/80 font-mono text-sm uppercase tracking-[0.3em] mb-12">
+            <h1 className="text-[var(--foreground)]/80 font-mono text-sm uppercase tracking-[0.3em] mb-12">
               Initializing Engineering Environment
             </h1>
             <div className="flex flex-col items-center gap-4 font-mono text-xs tracking-widest text-[var(--electric)]/70">
@@ -211,7 +211,7 @@ export function BootLoader({ onDone }: { onDone: () => void }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="absolute top-[60%] flex flex-col items-center gap-4 text-center font-serif text-xl italic font-light tracking-wide text-white/90 w-full"
+                  className="absolute top-[60%] flex flex-col items-center gap-4 text-center font-serif text-xl italic font-light tracking-wide text-[var(--foreground)]/90 w-full"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -244,7 +244,7 @@ export function BootLoader({ onDone }: { onDone: () => void }) {
             transition={{ duration: 0.8 }}
             className="absolute flex flex-col items-center justify-center text-center gap-6"
           >
-            <div className="font-mono text-sm tracking-[0.4em] uppercase text-white/80">
+            <div className="font-mono text-sm tracking-[0.4em] uppercase text-[var(--foreground)]/80">
               Engineering Workspace Ready
             </div>
             <div className="flex items-center gap-3 border border-white/10 rounded-full px-6 py-2 bg-white/5 backdrop-blur-sm">

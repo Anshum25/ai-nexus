@@ -37,7 +37,7 @@ function ArchitectureAtlasComponent() {
   };
 
   return (
-    <div className="pt-24 pb-32 bg-[#001f3f] min-h-screen text-blue-100 font-mono">
+    <div className="pt-24 pb-32 bg-[var(--background)] min-h-screen text-blue-100 font-mono">
       
       {/* Blueprint Grid Background */}
       <div className="fixed inset-0 pointer-events-none opacity-20 z-0" 
@@ -46,13 +46,13 @@ function ArchitectureAtlasComponent() {
            style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)', backgroundSize: '100px 100px' }} />
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <header className="mb-16 border-4 border-blue-400 p-8 bg-[#001f3f]/80 backdrop-blur-sm relative shadow-2xl">
+        <header className="mb-16 border-4 border-blue-400 p-8 bg-[var(--background)]/80 backdrop-blur-sm relative shadow-2xl">
           <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-blue-400" />
           <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-blue-400" />
           <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-blue-400" />
           <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-blue-400" />
           
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-white uppercase flex items-center gap-4">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-[var(--foreground)] uppercase flex items-center gap-4">
             <Crosshair className="w-10 h-10" />
             Architecture Atlas
           </h1>
@@ -66,15 +66,15 @@ function ArchitectureAtlasComponent() {
             <div 
               key={arch.id} 
               onClick={() => setSelected(arch)}
-              className="bg-[#002b5e] p-8 border-2 border-blue-400 hover:bg-[#003366] cursor-pointer transition-colors group relative"
+              className="bg-[var(--background)] p-8 border-2 border-blue-400 hover:bg-[var(--background)] cursor-pointer transition-colors group relative"
             >
               <div className="text-xs text-blue-300 mb-2 uppercase tracking-widest">{arch.category}</div>
-              <h2 className="text-3xl font-bold mb-4 text-white uppercase">{arch.title}</h2>
+              <h2 className="text-3xl font-bold mb-4 text-[var(--foreground)] uppercase">{arch.title}</h2>
               <p className="text-blue-100/80 mb-6 text-sm">{arch.description}</p>
               
               <div className="w-full h-48 border-2 border-blue-400/50 flex items-center justify-center overflow-hidden relative">
                  <Workflow className="w-12 h-12 text-blue-400 opacity-50 group-hover:opacity-100 transition-opacity" />
-                 <span className="absolute bottom-4 font-mono text-xs text-blue-300 uppercase tracking-widest bg-[#002b5e] px-2">Expand Schematic</span>
+                 <span className="absolute bottom-4 font-mono text-xs text-blue-300 uppercase tracking-widest bg-[var(--background)] px-2">Expand Schematic</span>
               </div>
             </div>
           ))}
@@ -87,14 +87,14 @@ function ArchitectureAtlasComponent() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-[#001f3f]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-6"
+            className="fixed inset-0 z-[200] bg-[var(--background)]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-6"
             onClick={() => setSelected(null)}
           >
             <motion.div 
               initial={{ scale: 0.95, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
-              className="bg-[#002b5e] border-4 border-blue-400 w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-2xl relative flex flex-col lg:flex-row"
+              className="bg-[var(--background)] border-4 border-blue-400 w-full max-w-6xl max-h-[90vh] overflow-y-auto shadow-2xl relative flex flex-col lg:flex-row"
               onClick={e => e.stopPropagation()}
             >
               <button 
@@ -106,18 +106,18 @@ function ArchitectureAtlasComponent() {
               
               <div className="p-8 lg:p-12 lg:w-1/3 border-b-4 lg:border-b-0 lg:border-r-4 border-blue-400">
                 <div className="text-xs text-blue-300 mb-2 uppercase tracking-widest">{selected.category}</div>
-                <h2 className="text-3xl font-bold mb-6 text-white uppercase">{selected.title}</h2>
+                <h2 className="text-3xl font-bold mb-6 text-[var(--foreground)] uppercase">{selected.title}</h2>
                 <p className="text-blue-100/80 mb-8 text-sm">{selected.description}</p>
                 
                 <div className="space-y-6 text-sm">
                   <div className="border border-blue-400 p-4 bg-blue-400/5">
-                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider border-b border-blue-400/30 pb-2">Advantages</h4>
+                    <h4 className="font-bold text-[var(--foreground)] mb-2 uppercase tracking-wider border-b border-blue-400/30 pb-2">Advantages</h4>
                     <ul className="list-disc list-inside text-blue-100/80 space-y-1">
                       {selected.pros.map(p => <li key={p}>{p}</li>)}
                     </ul>
                   </div>
                   <div className="border border-blue-400 p-4 bg-blue-400/5">
-                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider border-b border-blue-400/30 pb-2">Constraints</h4>
+                    <h4 className="font-bold text-[var(--foreground)] mb-2 uppercase tracking-wider border-b border-blue-400/30 pb-2">Constraints</h4>
                     <ul className="list-disc list-inside text-blue-100/80 space-y-1">
                       {selected.cons.map(c => <li key={c}>{c}</li>)}
                     </ul>
@@ -125,7 +125,7 @@ function ArchitectureAtlasComponent() {
                 </div>
               </div>
 
-              <div className="p-8 lg:p-12 lg:w-2/3 flex items-center justify-center relative overflow-hidden bg-[#001f3f]">
+              <div className="p-8 lg:p-12 lg:w-2/3 flex items-center justify-center relative overflow-hidden bg-[var(--background)]">
                 <svg className="w-full h-full max-w-md" viewBox="0 0 400 400">
                   <motion.rect
                     width="100" height="50" x="150" y="50"

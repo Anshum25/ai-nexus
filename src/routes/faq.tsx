@@ -70,14 +70,14 @@ function FAQTerminalComponent() {
   };
 
   return (
-    <div className="pt-24 pb-32 bg-[#050505] min-h-screen">
+    <div className="pt-24 pb-32 bg-[var(--background)] min-h-screen">
       <div className="container mx-auto px-6 max-w-5xl">
         <header className="mb-8">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 flex items-center gap-4">
             <Terminal className="w-10 h-10 text-[var(--electric)]" />
             FAQ Interrogation
           </h1>
-          <p className="text-white/40 font-mono text-sm uppercase tracking-widest">
+          <p className="text-[var(--foreground)]/40 font-mono text-sm uppercase tracking-widest">
             Direct interface to the engineering mindset.
           </p>
         </header>
@@ -96,7 +96,7 @@ function FAQTerminalComponent() {
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <div className="text-xs font-mono text-white/40 flex items-center gap-2">
+                <div className="text-xs font-mono text-[var(--foreground)]/40 flex items-center gap-2">
                   <Shield className="w-3 h-3" /> secure_session_0x9A
                 </div>
               </div>
@@ -108,7 +108,7 @@ function FAQTerminalComponent() {
             {/* Terminal Output */}
             <div className="flex-1 overflow-y-auto p-6 font-mono text-sm md:text-base leading-relaxed space-y-4 relative z-10 scrollbar-none">
               {history.map((line, i) => (
-                <div key={i} className={`flex ${line.type === 'user' ? 'text-[var(--cyan)]' : line.type === 'system' ? 'text-white/40' : 'text-green-400'}`}>
+                <div key={i} className={`flex ${line.type === 'user' ? 'text-[var(--cyan)]' : line.type === 'system' ? 'text-[var(--foreground)]/40' : 'text-green-400'}`}>
                   {line.type === 'agent' && <span className="mr-3 opacity-50">#</span>}
                   {line.type === 'system' && <span className="mr-3 opacity-50">~</span>}
                   <span className="flex-1">{line.text}{streaming && i === history.length - 1 && <span className="animate-pulse">_</span>}</span>
@@ -139,7 +139,7 @@ function FAQTerminalComponent() {
                     <span>Execute Query</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
-                  <div className="text-sm font-semibold text-white/80 group-hover:text-white leading-snug">
+                  <div className="text-sm font-semibold text-[var(--foreground)]/80 group-hover:text-[var(--foreground)] leading-snug">
                     "{faq.question}"
                   </div>
                 </motion.button>
@@ -147,7 +147,7 @@ function FAQTerminalComponent() {
             </AnimatePresence>
             
             <div className="mt-8 p-4 bg-black/40 border border-white/5 rounded-xl">
-              <p className="text-xs font-mono text-white/40 leading-relaxed">
+              <p className="text-xs font-mono text-[var(--foreground)]/40 leading-relaxed">
                 SYSTEM NOTE: Responses are generated based on historical engineering data, architectural decisions, and personal philosophy parameters.
               </p>
             </div>

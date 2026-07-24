@@ -76,11 +76,11 @@ export function NexusAIGuide() {
                   <Brain className="w-4 h-4 text-[var(--electric)]" />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-white tracking-wide">NEXUS AI</div>
+                  <div className="text-sm font-bold text-[var(--foreground)] tracking-wide">NEXUS AI</div>
                   <div className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">Portfolio Intelligence</div>
                 </div>
               </div>
-              <button onClick={handleClose} className="p-2 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
+              <button onClick={handleClose} className="p-2 rounded-full hover:bg-zinc-800 text-zinc-400 hover:text-[var(--foreground)] transition-colors">
                 <X className="w-4 h-4" />
               </button>
             </header>
@@ -157,14 +157,14 @@ export function NexusAIGuide() {
                         <Terminal className="w-4 h-4 text-zinc-400" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-white">View Architecture Lab</div>
+                        <div className="text-xs font-bold text-[var(--foreground)]">View Architecture Lab</div>
                         <div className="text-[10px] text-zinc-500">Evidence Attached</div>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-zinc-600 group-hover:text-white transition-colors" />
+                    <ArrowRight className="w-4 h-4 text-zinc-600 group-hover:text-[var(--foreground)] transition-colors" />
                   </div>
                   
-                  <button onClick={() => setMode("menu")} className="w-full text-center text-xs text-zinc-500 hover:text-white transition-colors py-2">
+                  <button onClick={() => setMode("menu")} className="w-full text-center text-xs text-zinc-500 hover:text-[var(--foreground)] transition-colors py-2">
                     Return to menu
                   </button>
                 </div>
@@ -177,7 +177,7 @@ export function NexusAIGuide() {
                 <input 
                   type="text" 
                   placeholder="Ask a question..."
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg py-2.5 pl-4 pr-10 text-sm text-white focus:outline-none focus:border-[var(--electric)] transition-colors"
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-lg py-2.5 pl-4 pr-10 text-sm text-[var(--foreground)] focus:outline-none focus:border-[var(--electric)] transition-colors"
                 />
                 <button className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md bg-[var(--electric)] text-black hover:opacity-80">
                   <Play className="w-3 h-3" />
@@ -217,9 +217,9 @@ function ActionBtn({ icon: Icon, label, onClick }: { icon: any, label: string, o
     >
       <div className="flex items-center gap-3">
         <Icon className="w-4 h-4 text-[var(--electric)]" />
-        <span className="text-sm font-medium text-zinc-300 group-hover:text-white transition-colors">{label}</span>
+        <span className="text-sm font-medium text-zinc-300 group-hover:text-[var(--foreground)] transition-colors">{label}</span>
       </div>
-      <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-white transition-colors" />
+      <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-[var(--foreground)] transition-colors" />
     </button>
   );
 }

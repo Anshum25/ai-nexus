@@ -37,7 +37,7 @@ export function ProjectExplorer() {
       <div className="container mx-auto max-w-7xl flex-1 flex flex-col border border-white/10 rounded-2xl overflow-hidden glass shadow-2xl">
         
         {/* Top Title Bar */}
-        <div className="h-10 bg-black/40 border-b border-white/10 flex items-center justify-between px-4 text-xs font-mono text-white/50">
+        <div className="h-10 bg-black/40 border-b border-white/10 flex items-center justify-between px-4 text-xs font-mono text-[var(--foreground)]/50">
           <div className="flex items-center gap-4">
             <div className="flex gap-1.5">
               <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -70,7 +70,7 @@ export function ProjectExplorer() {
                 <div key={cat} className="mb-2">
                   <button 
                     onClick={() => setActiveFolder(activeFolder === cat ? null : cat)}
-                    className="flex items-center gap-2 w-full text-left px-2 py-1.5 text-sm font-medium text-white/80 hover:bg-white/5 rounded-md transition-colors"
+                    className="flex items-center gap-2 w-full text-left px-2 py-1.5 text-sm font-medium text-[var(--foreground)]/80 hover:bg-white/5 rounded-md transition-colors"
                   >
                     {activeFolder === cat ? <FolderOpen className="w-4 h-4 text-[var(--electric)]" /> : <Folder className="w-4 h-4 text-[var(--electric)]" />}
                     {cat}
@@ -87,7 +87,7 @@ export function ProjectExplorer() {
                           <button
                             key={p.id}
                             onClick={() => setActiveProject(p)}
-                            className={`flex items-center gap-2 w-full text-left px-2 py-1.5 text-sm rounded-md transition-colors ${activeProject.id === p.id ? 'bg-[var(--electric)]/20 text-[var(--cyan)]' : 'text-white/60 hover:bg-white/5 hover:text-white/90'}`}
+                            className={`flex items-center gap-2 w-full text-left px-2 py-1.5 text-sm rounded-md transition-colors ${activeProject.id === p.id ? 'bg-[var(--electric)]/20 text-[var(--cyan)]' : 'text-[var(--foreground)]/60 hover:bg-white/5 hover:text-[var(--foreground)]/90'}`}
                           >
                             <p.icon className="w-3.5 h-3.5" />
                             <span className="truncate">{p.name}</span>
@@ -117,7 +117,7 @@ export function ProjectExplorer() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as ProjectTab)}
-                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-mono border-r border-white/10 min-w-max transition-colors ${activeTab === tab.id ? 'bg-background text-white border-t-2 border-t-[var(--cyan)]' : 'text-white/40 hover:bg-white/5'}`}
+                  className={`flex items-center gap-2 px-4 py-2.5 text-sm font-mono border-r border-white/10 min-w-max transition-colors ${activeTab === tab.id ? 'bg-background text-[var(--foreground)] border-t-2 border-t-[var(--cyan)]' : 'text-[var(--foreground)]/40 hover:bg-white/5'}`}
                 >
                   <tab.icon className={`w-3.5 h-3.5 ${activeTab === tab.id ? 'text-[var(--cyan)]' : ''}`} />
                   {tab.label}
@@ -145,7 +145,7 @@ export function ProjectExplorer() {
                            {activeProject.status}
                          </span>
                        </h1>
-                       <div className="flex items-center gap-4 text-sm font-mono text-white/50 mb-12 pb-6 border-b border-white/10">
+                       <div className="flex items-center gap-4 text-sm font-mono text-[var(--foreground)]/50 mb-12 pb-6 border-b border-white/10">
                          <span>Category: {activeProject.category}</span>
                          <span>|</span>
                          <span>Role: Lead Engineer</span>
@@ -194,11 +194,11 @@ export function ProjectExplorer() {
                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                          <div className="glass p-6 rounded-xl">
                            <h4 className="font-semibold mb-2">Tradeoffs</h4>
-                           <p className="text-sm text-white/60">Decoupling vector sync from ERP transaction cycle means slightly stale data (eventual consistency), but prevents blocking critical path database writes.</p>
+                           <p className="text-sm text-[var(--foreground)]/60">Decoupling vector sync from ERP transaction cycle means slightly stale data (eventual consistency), but prevents blocking critical path database writes.</p>
                          </div>
                          <div className="glass p-6 rounded-xl">
                            <h4 className="font-semibold mb-2">Security</h4>
-                           <p className="text-sm text-white/60">LLM never enforces permissions. Qdrant filters payloads using JWT claims before any vectors are sent to the context window.</p>
+                           <p className="text-sm text-[var(--foreground)]/60">LLM never enforces permissions. Qdrant filters payloads using JWT claims before any vectors are sent to the context window.</p>
                          </div>
                        </div>
                      </div>
@@ -209,11 +209,11 @@ export function ProjectExplorer() {
                      <div className="space-y-6">
                        <h2 className="text-2xl font-bold capitalize">{activeTab} Implementation</h2>
                        <div className="glass p-6 rounded-xl">
-                         <p className="text-white/70">Detailed implementation details, code snippets, and challenges for the {activeTab} layer go here. This mimics a real engineering deep dive.</p>
+                         <p className="text-[var(--foreground)]/70">Detailed implementation details, code snippets, and challenges for the {activeTab} layer go here. This mimics a real engineering deep dive.</p>
                        </div>
                        <div className="p-6 rounded-xl bg-black/60 border border-white/10 font-mono text-sm">
                          <span className="text-purple-400">export</span> <span className="text-blue-400">const</span> <span className="text-yellow-200">initModule</span> = <span className="text-purple-400">async</span> () <span className="text-purple-400">=&gt;</span> {'{'}
-                         <br/>&nbsp;&nbsp;<span className="text-white/40">// Initialization logic</span>
+                         <br/>&nbsp;&nbsp;<span className="text-[var(--foreground)]/40">// Initialization logic</span>
                          <br/>{'}'}
                        </div>
                      </div>
@@ -225,15 +225,15 @@ export function ProjectExplorer() {
                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                           <div className="glass p-6 rounded-xl text-center">
                             <div className="text-3xl font-bold text-[var(--electric)] mb-2">800ms</div>
-                            <div className="text-xs font-mono text-white/50 uppercase">P95 Latency</div>
+                            <div className="text-xs font-mono text-[var(--foreground)]/50 uppercase">P95 Latency</div>
                           </div>
                           <div className="glass p-6 rounded-xl text-center">
                             <div className="text-3xl font-bold text-[var(--cyan)] mb-2">99.9%</div>
-                            <div className="text-xs font-mono text-white/50 uppercase">Uptime</div>
+                            <div className="text-xs font-mono text-[var(--foreground)]/50 uppercase">Uptime</div>
                           </div>
                           <div className="glass p-6 rounded-xl text-center">
-                            <div className="text-3xl font-bold text-white mb-2">40x</div>
-                            <div className="text-xs font-mono text-white/50 uppercase">Speedup</div>
+                            <div className="text-3xl font-bold text-[var(--foreground)] mb-2">40x</div>
+                            <div className="text-xs font-mono text-[var(--foreground)]/50 uppercase">Speedup</div>
                           </div>
                        </div>
                      </div>

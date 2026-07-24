@@ -19,6 +19,7 @@ import { Route as BookshelfRouteImport } from './routes/bookshelf'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as DecisionRoomRouteImport } from './routes/decision-room'
 import { Route as EngineeringRouteImport } from './routes/engineering'
+import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as FailureMuseumRouteImport } from './routes/failure-museum'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as InnovationLabRouteImport } from './routes/innovation-lab'
@@ -29,6 +30,7 @@ import { Route as MissionHistoryRouteImport } from './routes/mission-history'
 import { Route as NotebookRouteImport } from './routes/notebook'
 import { Route as NowRouteImport } from './routes/now'
 import { Route as PassportRouteImport } from './routes/passport'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PromptLabRouteImport } from './routes/prompt-lab'
 import { Route as ResearchVaultRouteImport } from './routes/research-vault'
 import { Route as ResourcesRouteImport } from './routes/resources'
@@ -86,6 +88,11 @@ const EngineeringRoute = EngineeringRouteImport.update({
   path: '/engineering',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FailureMuseumRoute = FailureMuseumRouteImport.update({
   id: '/failure-museum',
   path: '/failure-museum',
@@ -136,6 +143,11 @@ const PassportRoute = PassportRouteImport.update({
   path: '/passport',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PromptLabRoute = PromptLabRouteImport.update({
   id: '/prompt-lab',
   path: '/prompt-lab',
@@ -178,6 +190,7 @@ export interface FileRoutesByFullPath {
   '/case-studies': typeof CaseStudiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/engineering': typeof EngineeringRoute
+  '/experience': typeof ExperienceRoute
   '/failure-museum': typeof FailureMuseumRoute
   '/faq': typeof FaqRoute
   '/innovation-lab': typeof InnovationLabRoute
@@ -188,6 +201,7 @@ export interface FileRoutesByFullPath {
   '/notebook': typeof NotebookRoute
   '/now': typeof NowRoute
   '/passport': typeof PassportRoute
+  '/profile': typeof ProfileRoute
   '/prompt-lab': typeof PromptLabRoute
   '/research-vault': typeof ResearchVaultRoute
   '/resources': typeof ResourcesRoute
@@ -206,6 +220,7 @@ export interface FileRoutesByTo {
   '/case-studies': typeof CaseStudiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/engineering': typeof EngineeringRoute
+  '/experience': typeof ExperienceRoute
   '/failure-museum': typeof FailureMuseumRoute
   '/faq': typeof FaqRoute
   '/innovation-lab': typeof InnovationLabRoute
@@ -216,6 +231,7 @@ export interface FileRoutesByTo {
   '/notebook': typeof NotebookRoute
   '/now': typeof NowRoute
   '/passport': typeof PassportRoute
+  '/profile': typeof ProfileRoute
   '/prompt-lab': typeof PromptLabRoute
   '/research-vault': typeof ResearchVaultRoute
   '/resources': typeof ResourcesRoute
@@ -235,6 +251,7 @@ export interface FileRoutesById {
   '/case-studies': typeof CaseStudiesRoute
   '/decision-room': typeof DecisionRoomRoute
   '/engineering': typeof EngineeringRoute
+  '/experience': typeof ExperienceRoute
   '/failure-museum': typeof FailureMuseumRoute
   '/faq': typeof FaqRoute
   '/innovation-lab': typeof InnovationLabRoute
@@ -245,6 +262,7 @@ export interface FileRoutesById {
   '/notebook': typeof NotebookRoute
   '/now': typeof NowRoute
   '/passport': typeof PassportRoute
+  '/profile': typeof ProfileRoute
   '/prompt-lab': typeof PromptLabRoute
   '/research-vault': typeof ResearchVaultRoute
   '/resources': typeof ResourcesRoute
@@ -265,6 +283,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/decision-room'
     | '/engineering'
+    | '/experience'
     | '/failure-museum'
     | '/faq'
     | '/innovation-lab'
@@ -275,6 +294,7 @@ export interface FileRouteTypes {
     | '/notebook'
     | '/now'
     | '/passport'
+    | '/profile'
     | '/prompt-lab'
     | '/research-vault'
     | '/resources'
@@ -293,6 +313,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/decision-room'
     | '/engineering'
+    | '/experience'
     | '/failure-museum'
     | '/faq'
     | '/innovation-lab'
@@ -303,6 +324,7 @@ export interface FileRouteTypes {
     | '/notebook'
     | '/now'
     | '/passport'
+    | '/profile'
     | '/prompt-lab'
     | '/research-vault'
     | '/resources'
@@ -321,6 +343,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/decision-room'
     | '/engineering'
+    | '/experience'
     | '/failure-museum'
     | '/faq'
     | '/innovation-lab'
@@ -331,6 +354,7 @@ export interface FileRouteTypes {
     | '/notebook'
     | '/now'
     | '/passport'
+    | '/profile'
     | '/prompt-lab'
     | '/research-vault'
     | '/resources'
@@ -350,6 +374,7 @@ export interface RootRouteChildren {
   CaseStudiesRoute: typeof CaseStudiesRoute
   DecisionRoomRoute: typeof DecisionRoomRoute
   EngineeringRoute: typeof EngineeringRoute
+  ExperienceRoute: typeof ExperienceRoute
   FailureMuseumRoute: typeof FailureMuseumRoute
   FaqRoute: typeof FaqRoute
   InnovationLabRoute: typeof InnovationLabRoute
@@ -360,6 +385,7 @@ export interface RootRouteChildren {
   NotebookRoute: typeof NotebookRoute
   NowRoute: typeof NowRoute
   PassportRoute: typeof PassportRoute
+  ProfileRoute: typeof ProfileRoute
   PromptLabRoute: typeof PromptLabRoute
   ResearchVaultRoute: typeof ResearchVaultRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -440,6 +466,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EngineeringRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/failure-museum': {
       id: '/failure-museum'
       path: '/failure-museum'
@@ -510,6 +543,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PassportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/prompt-lab': {
       id: '/prompt-lab'
       path: '/prompt-lab'
@@ -566,6 +606,7 @@ const rootRouteChildren: RootRouteChildren = {
   CaseStudiesRoute: CaseStudiesRoute,
   DecisionRoomRoute: DecisionRoomRoute,
   EngineeringRoute: EngineeringRoute,
+  ExperienceRoute: ExperienceRoute,
   FailureMuseumRoute: FailureMuseumRoute,
   FaqRoute: FaqRoute,
   InnovationLabRoute: InnovationLabRoute,
@@ -576,6 +617,7 @@ const rootRouteChildren: RootRouteChildren = {
   NotebookRoute: NotebookRoute,
   NowRoute: NowRoute,
   PassportRoute: PassportRoute,
+  ProfileRoute: ProfileRoute,
   PromptLabRoute: PromptLabRoute,
   ResearchVaultRoute: ResearchVaultRoute,
   ResourcesRoute: ResourcesRoute,

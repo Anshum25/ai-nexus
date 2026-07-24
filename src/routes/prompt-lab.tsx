@@ -55,12 +55,12 @@ function PromptLabComponent() {
   };
 
   return (
-    <div className="pt-24 pb-32 bg-[#09090b] min-h-screen text-zinc-300 font-mono">
+    <div className="pt-24 pb-32 bg-[var(--background)] min-h-screen text-zinc-300 font-mono">
       <div className="container mx-auto px-6 max-w-7xl">
         
         <header className="mb-12 border-b border-zinc-800 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-2 flex items-center gap-4">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--foreground)] mb-2 flex items-center gap-4">
               <Terminal className="w-10 h-10 text-emerald-500" />
               Prompt Laboratory
             </h1>
@@ -92,7 +92,7 @@ function PromptLabComponent() {
                 onChange={(e) => setQuery(e.target.value)}
                 disabled={isProcessing}
                 placeholder="Ask about architecture, systems, or engineering decisions..."
-                className="w-full bg-zinc-900 border border-zinc-700 rounded p-4 text-sm focus:outline-none focus:border-emerald-500 text-white min-h-[120px] resize-none disabled:opacity-50"
+                className="w-full bg-zinc-900 border border-zinc-700 rounded p-4 text-sm focus:outline-none focus:border-emerald-500 text-[var(--foreground)] min-h-[120px] resize-none disabled:opacity-50"
               />
               <button 
                 type="submit"
@@ -122,7 +122,7 @@ function PromptLabComponent() {
                       `}>
                         <stage.icon className={`w-4 h-4 ${isActive && stage.id !== 'answer' ? 'animate-pulse' : ''}`} />
                       </div>
-                      <div className={`text-sm transition-colors ${isActive ? 'text-white font-bold' : isPast ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                      <div className={`text-sm transition-colors ${isActive ? 'text-[var(--foreground)] font-bold' : isPast ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         {stage.label}
                       </div>
                       {isActive && stage.id !== 'answer' && (
@@ -251,7 +251,7 @@ function PromptLabComponent() {
                </div>
                
                {activeStage === 'answer' || output ? (
-                 <div className="text-white whitespace-pre-wrap leading-relaxed">
+                 <div className="text-[var(--foreground)] whitespace-pre-wrap leading-relaxed">
                    {output}
                    {isProcessing && <span className="inline-block w-2 h-4 ml-1 bg-emerald-500 animate-pulse" />}
                  </div>

@@ -46,11 +46,11 @@ const SKILL_TREE = [
 
 function RPGTechTreeComponent() {
   return (
-    <div className="pt-24 pb-32 bg-[#050505] min-h-screen">
+    <div className="pt-24 pb-32 bg-[var(--background)] min-h-screen">
       <div className="container mx-auto px-6 max-w-5xl">
         <header className="mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-white">Skill Tree</h1>
-          <p className="text-white/40 text-sm uppercase tracking-widest font-mono">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-[var(--foreground)]">Skill Tree</h1>
+          <p className="text-[var(--foreground)]/40 text-sm uppercase tracking-widest font-mono">
             Dependency graph & future unlock paths
           </p>
         </header>
@@ -64,7 +64,7 @@ function RPGTechTreeComponent() {
             <div key={tier.tier} className="relative z-10">
               
               <div className="text-center mb-8 relative">
-                <span className="bg-[#050505] px-4 font-mono text-[var(--electric)] text-xs uppercase tracking-widest border border-[var(--electric)]/30 rounded-full py-1">
+                <span className="bg-[var(--background)] px-4 font-mono text-[var(--electric)] text-xs uppercase tracking-widest border border-[var(--electric)]/30 rounded-full py-1">
                   Tier {tier.tier} // {tier.title}
                 </span>
               </div>
@@ -83,20 +83,20 @@ function RPGTechTreeComponent() {
                     <div className="absolute top-4 right-4">
                       {node.unlocked 
                         ? <Unlock className="w-4 h-4 text-[var(--cyan)] opacity-50" />
-                        : <Lock className="w-4 h-4 text-white/30" />
+                        : <Lock className="w-4 h-4 text-[var(--foreground)]/30" />
                       }
                     </div>
 
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 
-                      ${node.unlocked ? 'bg-[var(--cyan)]/10 text-[var(--cyan)]' : 'bg-white/5 text-white/40'}
+                      ${node.unlocked ? 'bg-[var(--cyan)]/10 text-[var(--cyan)]' : 'bg-white/5 text-[var(--foreground)]/40'}
                     `}>
                       <node.icon className="w-6 h-6" />
                     </div>
 
-                    <h3 className={`text-xl font-bold mb-2 ${node.unlocked ? 'text-white' : 'text-white/50'}`}>
+                    <h3 className={`text-xl font-bold mb-2 ${node.unlocked ? 'text-[var(--foreground)]' : 'text-[var(--foreground)]/50'}`}>
                       {node.name}
                     </h3>
-                    <p className={`text-sm leading-relaxed ${node.unlocked ? 'text-white/60' : 'text-white/30'}`}>
+                    <p className={`text-sm leading-relaxed ${node.unlocked ? 'text-[var(--foreground)]/60' : 'text-[var(--foreground)]/30'}`}>
                       {node.desc}
                     </p>
 

@@ -77,7 +77,7 @@ export function ERPWorld({
                 <Factory className="w-5 h-5 text-orange-500" />
               </div>
               <div>
-                <h1 className="text-lg font-bold tracking-tight text-white uppercase">Enterprise Operations Platform</h1>
+                <h1 className="text-lg font-bold tracking-tight text-[var(--foreground)] uppercase">Enterprise Operations Platform</h1>
                 <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400">Where software becomes business.</div>
               </div>
             </div>
@@ -87,7 +87,7 @@ export function ERPWorld({
                 <button 
                   onClick={() => setViewMode("business")}
                   className={`px-4 py-1.5 rounded text-xs font-semibold tracking-wide uppercase transition-all ${
-                    viewMode === "business" ? "bg-orange-500 text-white shadow-sm" : "text-slate-400 hover:text-white"
+                    viewMode === "business" ? "bg-orange-500 text-[var(--foreground)] shadow-sm" : "text-slate-400 hover:text-[var(--foreground)]"
                   }`}
                 >
                   Campus View
@@ -95,7 +95,7 @@ export function ERPWorld({
                 <button 
                   onClick={() => setViewMode("engineering")}
                   className={`px-4 py-1.5 rounded text-xs font-semibold tracking-wide uppercase flex items-center gap-2 transition-all ${
-                    viewMode === "engineering" ? "bg-slate-600 text-white shadow-sm" : "text-slate-400 hover:text-white"
+                    viewMode === "engineering" ? "bg-slate-600 text-[var(--foreground)] shadow-sm" : "text-slate-400 hover:text-[var(--foreground)]"
                   }`}
                 >
                   <Wrench className="w-3 h-3" /> Architecture
@@ -103,13 +103,13 @@ export function ERPWorld({
               </div>
 
               <div className="flex items-center gap-4">
-                <button onClick={() => setShowReplay(true)} className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-orange-900/40 text-orange-300 hover:text-white hover:bg-orange-800/60 text-xs font-medium border border-orange-700/50 transition-colors">
+                <button onClick={() => setShowReplay(true)} className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-orange-900/40 text-orange-300 hover:text-[var(--foreground)] hover:bg-orange-800/60 text-xs font-medium border border-orange-700/50 transition-colors">
                   <Rewind className="w-3.5 h-3.5" /> Replay Build
                 </button>
-                <button onClick={() => setShowThinking(true)} className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 text-xs font-medium border border-slate-700 transition-colors">
+                <button onClick={() => setShowThinking(true)} className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-[var(--foreground)] hover:bg-slate-700 text-xs font-medium border border-slate-700 transition-colors">
                   <Brain className="w-3.5 h-3.5" /> Thinking Mode
                 </button>
-                <button onClick={onClose} className="p-2 rounded hover:bg-slate-800 transition-colors text-slate-400 hover:text-white">
+                <button onClick={onClose} className="p-2 rounded hover:bg-slate-800 transition-colors text-slate-400 hover:text-[var(--foreground)]">
                   <X className="w-6 h-6" />
                 </button>
               </div>
@@ -148,7 +148,7 @@ function BusinessView({ workflowActive, setWorkflowActive, activeStep }: { workf
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2">
-          <h2 className="text-4xl font-bold text-white mb-6 uppercase tracking-tight">The Living Business</h2>
+          <h2 className="text-4xl font-bold text-[var(--foreground)] mb-6 uppercase tracking-tight">The Living Business</h2>
           <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mb-8">
             ERPNext isn't just a database. It's the central nervous system of a physical campus. 
             When a sales order is logged, physical trucks move, warehouse robots dispatch goods, and factory lines activate.
@@ -159,7 +159,7 @@ function BusinessView({ workflowActive, setWorkflowActive, activeStep }: { workf
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-slate-800/50 border border-slate-700 p-4 rounded-lg">
             <div className="text-[10px] font-mono uppercase text-slate-400 mb-1">Daily Production</div>
-            <div className="text-2xl font-bold text-white">14,205 <span className="text-sm text-slate-500 font-normal">units</span></div>
+            <div className="text-2xl font-bold text-[var(--foreground)]">14,205 <span className="text-sm text-slate-500 font-normal">units</span></div>
           </div>
           <div className="bg-slate-800/50 border border-slate-700 p-4 rounded-lg">
             <div className="text-[10px] font-mono uppercase text-slate-400 mb-1">Quality Pass Rate</div>
@@ -180,7 +180,7 @@ function BusinessView({ workflowActive, setWorkflowActive, activeStep }: { workf
       <div className="bg-slate-900 border border-slate-700 rounded-xl p-8 shadow-2xl relative overflow-hidden">
         <div className="flex justify-between items-end mb-12">
           <div>
-            <h3 className="text-xl font-bold text-white uppercase tracking-wide">Document Flow Visualization</h3>
+            <h3 className="text-xl font-bold text-[var(--foreground)] uppercase tracking-wide">Document Flow Visualization</h3>
             <p className="text-sm text-slate-400">Watch how data propagates through the physical organization.</p>
           </div>
           <button 
@@ -188,7 +188,7 @@ function BusinessView({ workflowActive, setWorkflowActive, activeStep }: { workf
             className={`px-6 py-3 rounded font-bold uppercase tracking-widest text-xs transition-all ${
               workflowActive 
                 ? "bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700" 
-                : "bg-orange-500 text-white hover:bg-orange-600 shadow-[0_0_15px_rgba(249,115,22,0.4)]"
+                : "bg-orange-500 text-[var(--foreground)] hover:bg-orange-600 shadow-[0_0_15px_rgba(249,115,22,0.4)]"
             }`}
           >
             {workflowActive ? "Processing Order..." : "Simulate Customer Order"}
@@ -246,7 +246,7 @@ function BusinessView({ workflowActive, setWorkflowActive, activeStep }: { workf
 
       {/* Client Solutions Grid */}
       <div>
-        <h3 className="text-2xl font-bold text-white mb-8 uppercase tracking-tight">Client Solutions</h3>
+        <h3 className="text-2xl font-bold text-[var(--foreground)] mb-8 uppercase tracking-tight">Client Solutions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <SolutionCard 
             title="Fleet Tracking Logistics"
@@ -272,7 +272,7 @@ function BusinessView({ workflowActive, setWorkflowActive, activeStep }: { workf
 function SolutionCard({ title, challenge, solution }: { title: string; challenge: string; solution: string }) {
   return (
     <div className="bg-slate-800 border border-slate-700 p-6 rounded-lg hover:border-slate-500 transition-colors">
-      <h4 className="text-lg font-bold text-white mb-4">{title}</h4>
+      <h4 className="text-lg font-bold text-[var(--foreground)] mb-4">{title}</h4>
       <div className="mb-4">
         <span className="text-[10px] font-mono text-red-400 uppercase tracking-widest block mb-1">Challenge</span>
         <p className="text-sm text-slate-300 leading-relaxed">{challenge}</p>
@@ -296,7 +296,7 @@ function EngineeringView() {
       className="max-w-5xl mx-auto space-y-16 pb-32"
     >
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-white mb-4 uppercase tracking-tight">Architecture & Customization</h2>
+        <h2 className="text-3xl font-bold text-[var(--foreground)] mb-4 uppercase tracking-tight">Architecture & Customization</h2>
         <p className="text-slate-400 text-lg max-w-2xl mx-auto">
           ERPNext is built on the Frappe Framework. True mastery requires understanding when to use built-in configurations and when to write low-level Python hooks.
         </p>
@@ -304,7 +304,7 @@ function EngineeringView() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
-          <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+          <h3 className="text-xl font-bold text-[var(--foreground)] mb-6 flex items-center gap-3">
             <LayoutTemplate className="w-5 h-5 text-orange-500" /> Custom DocTypes
           </h3>
           <p className="text-slate-300 text-sm leading-relaxed mb-4">
@@ -320,7 +320,7 @@ function EngineeringView() {
         </div>
 
         <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
-          <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+          <h3 className="text-xl font-bold text-[var(--foreground)] mb-6 flex items-center gap-3">
             <Workflow className="w-5 h-5 text-orange-500" /> Automation Engine
           </h3>
           <p className="text-slate-300 text-sm leading-relaxed mb-4">
@@ -335,7 +335,7 @@ function EngineeringView() {
       </div>
 
       <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
-        <h3 className="text-xl font-bold text-white mb-6">Engineering Decisions</h3>
+        <h3 className="text-xl font-bold text-[var(--foreground)] mb-6">Engineering Decisions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
           <div>
             <h4 className="text-orange-400 font-bold mb-2">Why customize via Custom Apps?</h4>

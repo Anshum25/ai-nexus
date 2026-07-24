@@ -7,7 +7,7 @@ export const Route = createFileRoute('/journal')({
 
 function JournalComponent() {
   return (
-    <div className="pt-24 pb-32 bg-[#F4F1EA] min-h-screen text-amber-900 font-serif selection:bg-amber-900/20">
+    <div className="pt-24 pb-32 bg-[var(--background)] min-h-screen text-amber-900 font-serif selection:bg-amber-900/20">
       
       {/* Paper texture overlay */}
       <div className="fixed inset-0 pointer-events-none opacity-40 z-0 mix-blend-multiply" 
