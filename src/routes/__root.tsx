@@ -124,11 +124,17 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const [booted, setBooted] = useState(false);
+  const [booted, setBooted] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("nexus-booted") === "true";
+    }
+    return false;
+  });
   const [showWelcome, setShowWelcome] = useState(false);
   
   const handleBootDone = () => {
     setBooted(true);
+    localStorage.setItem("nexus-booted", "true");
     setShowWelcome(true);
   };
 
@@ -157,15 +163,6 @@ function RootComponent() {
 
         <main className={`relative z-10 transition-opacity duration-1000 w-full ${booted ? "opacity-100" : "opacity-0"}`}>
           <Outlet />
-          {booted && (
-            <footer className="border-t border-[var(--border)] py-12 text-center font-mono text-xs text-[var(--muted-foreground)] flex flex-col items-center justify-center gap-4 mt-20">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
-                SYSTEM ONLINE
-              </div>
-              <div>© {new Date().getFullYear()} NEXUS Engineering</div>
-            </footer>
-          )}
         </main>
       </div>
       </QueryClientProvider>

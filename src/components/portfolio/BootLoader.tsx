@@ -107,7 +107,7 @@ export function BootLoader({ onDone }: { onDone: () => void }) {
             animate={{ opacity: [0, 0.5, 0.2, 0.8, 0.4], scale: [0.8, 1.2, 1, 1.5, 1.2] }}
             exit={{ opacity: 0, scale: 3 }}
             transition={{ duration: 2, ease: "easeInOut" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[var(--cyan)] rounded-full blur-[80px]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[var(--accent)] rounded-full blur-[80px]"
           />
         )}
       </AnimatePresence>
@@ -117,7 +117,7 @@ export function BootLoader({ onDone }: { onDone: () => void }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 2 ? 0.15 : 0 }}
         transition={{ duration: 2 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--cyan)] rounded-full blur-[150px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[var(--accent)] rounded-full blur-[150px] pointer-events-none"
       />
 
       {/* Phase 2: System Initialization */}
@@ -133,7 +133,7 @@ export function BootLoader({ onDone }: { onDone: () => void }) {
             <h1 className="text-[var(--foreground)]/80 font-mono text-sm uppercase tracking-[0.3em] mb-12">
               Initializing Engineering Environment
             </h1>
-            <div className="flex flex-col items-center gap-4 font-mono text-xs tracking-widest text-[var(--electric)]/70">
+            <div className="flex flex-col items-center gap-4 font-mono text-xs tracking-widest text-[var(--accent)]/70">
               {INIT_MODULES.map((mod, i) => (
                 <motion.div
                   key={mod}
@@ -170,36 +170,49 @@ export function BootLoader({ onDone }: { onDone: () => void }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 0.8, 0.4] }}
                 transition={{ duration: 2, delay: 1.5 }}
-                className="absolute inset-0 bg-[var(--cyan)] blur-[40px] rounded-full scale-150"
+                className="absolute inset-0 bg-[var(--accent)] blur-[40px] rounded-full scale-150"
               />
               
               <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative z-10">
-                {/* Main Triangle */}
+                {/* The 'A' */}
                 <motion.path
-                  d="M50 10 L90 80 L10 80 Z"
-                  stroke="var(--cyan)"
+                  d="M 10 80 L 30 20 L 50 80"
+                  stroke="var(--accent)"
                   strokeWidth="1.5"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
                 />
-                {/* Inner Elements */}
-                <motion.circle
-                  cx="50" cy="55" r="15"
-                  stroke="var(--electric)"
-                  strokeWidth="1.5"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 1.5, delay: 1, ease: "easeInOut" }}
-                />
+                {/* The 'D' */}
                 <motion.path
-                  d="M50 40 L50 70"
+                  d="M 30 20 L 60 20 A 30 30 0 0 1 60 80 L 50 80"
                   stroke="white"
                   strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
+                />
+                {/* Tech Crossbar for A */}
+                <motion.path
+                  d="M 23 50 L 37 50"
+                  stroke="var(--accent)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 1, delay: 1.5, ease: "easeInOut" }}
+                />
+                {/* Tech Dot for D */}
+                <motion.circle
+                  cx="60" cy="50" r="3"
+                  fill="white"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, delay: 1.8, ease: "easeOut" }}
                 />
               </svg>
             </motion.div>

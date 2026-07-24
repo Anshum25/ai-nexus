@@ -45,6 +45,20 @@ export function Ch10_Philosophy() {
           ))}
         </div>
 
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5 }}
+          className="mb-32 flex flex-col items-center text-center"
+        >
+          <div className="font-serif italic text-3xl md:text-5xl font-light leading-snug text-[var(--background)]/90 flex flex-col gap-4">
+            <span>"The best systems are never truly finished.</span>
+            <span className="text-[var(--background)]/60">They evolve.</span>
+            <span>So do engineers."</span>
+          </div>
+        </motion.div>
+
         <Link to="/decision-room" className="inline-flex items-center gap-2 text-sm font-medium text-[var(--background)] border-b border-[var(--background)]/30 hover:border-[var(--background)] pb-1 transition-colors">
           Read Philosophy <ArrowRight className="w-4 h-4" />
         </Link>

@@ -64,9 +64,10 @@ export function CinematicHero() {
           
           <motion.div variants={itemVariants} className="flex flex-col gap-3 text-[10px] font-mono uppercase tracking-[0.15em] mb-12">
             <a href="https://github.com/anshum25" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors w-fit">GitHub</a>
-            <a href="https://linkedin.com/in/anshum-dev" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors w-fit">LinkedIn</a>
-            <a href="#" className="hover:text-accent transition-colors w-fit">Resume</a>
-            <a href="mailto:contact@example.com" className="hover:text-accent transition-colors w-fit">Email</a>
+            <a href="https://www.linkedin.com/in/anshum-dev-11115a288/" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors w-fit">LinkedIn</a>
+            <a href="https://x.com/TheAnshumDev" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors w-fit">X (Twitter)</a>
+            <a href="/Anshum_Dev.pdf" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors w-fit">Resume</a>
+            <a href="mailto:anshum25506@gmail.com" className="hover:text-accent transition-colors w-fit">Email</a>
           </motion.div>
 
         </motion.div>
@@ -75,7 +76,7 @@ export function CinematicHero() {
         {/* ========================================================
             LAYER 2: HERO STATEMENT (Dominant, Center-Right)
             ======================================================== */}
-        <div className="col-span-12 md:col-span-9 xl:col-span-10 flex flex-col justify-center pt-[15vh] md:pt-0 md:-mt-16 lg:-mt-24 relative z-20">
+        <div className="col-span-12 md:col-span-9 xl:col-span-10 flex flex-col justify-start pt-[15vh] md:pt-[15vh] lg:pt-[10vh] relative z-20">
           
           {/* Staggered overlapping typography */}
           <div className="flex flex-col items-start lg:pl-[10%]">
@@ -143,7 +144,7 @@ export function CinematicHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute top-[60%] left-[10%] md:top-[55%] md:left-[10vw] text-xs md:text-sm lg:text-base text-foreground/70 font-serif max-w-[32rem] leading-relaxed flex flex-col gap-4 z-30 pointer-events-auto"
+          className="absolute bottom-[10%] left-[10%] md:bottom-[15%] md:left-[10vw] text-sm md:text-base lg:text-lg text-foreground/90 font-serif max-w-[36rem] leading-relaxed tracking-wide drop-shadow-sm flex flex-col gap-4 z-30 pointer-events-auto"
         >
           <p>
             I'm Anshum Dev, an AI Engineer and Full-Stack Developer passionate about building intelligent systems that solve real-world business problems. I specialize in designing scalable AI applications, enterprise software, and production-ready architectures using modern technologies across backend, cloud, and machine learning. Currently pursuing my Bachelor's in Computer Science, I spend most of my time exploring LLMs, RAG systems, multi-agent workflows, system design, and automation. I enjoy transforming complex ideas into reliable products with a strong focus on performance, clean architecture, and user experience. Beyond building software, I'm constantly learning, experimenting, and documenting my engineering journey. I'm always excited to collaborate on ambitious projects and create technology that has a meaningful impact.
